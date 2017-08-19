@@ -9,15 +9,15 @@
   "author": "Raphael De Freitas <raphael@de-freitas.net>",
   "license": "MIT",
   "dependencies": {
-    "@angular/common": "^4.3",
-    "@angular/core": "^4.3",
+    "@angular/common": "^4.3.5",
+    "@angular/core": "^4.3.5",
     "@angular/http": "^4.3",
     "rxjs": "^5.4"
   },
   "devDependencies": {
     "@angular/compiler": "^4.3",
-    "codelyzer": "^3.0",
-    "tslint": "^5.1",
-    "typescript": "^2.4"
+    "codelyzer": "^3.1",
+    "tslint": "^5.6",
+    "typescript": "^2.5"
   }
 }
