@@ -1,0 +1,23 @@
+{
+  "name": "@adrenalivre/ngx-api",
+  "version": "0.0.0",
+  "description": "A simple SDK allowing to use the Adrenalivre API",
+  "repository": {},
+  "scripts": {
+    "lint": "tslint -p ."
+  },
+  "author": "Raphael De Freitas <raphael@de-freitas.net>",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common": "^4.3",
+    "@angular/core": "^4.3",
+    "@angular/http": "^4.3",
+    "rxjs": "^5.4"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^4.3",
+    "codelyzer": "^3.0",
+    "tslint": "^5.1",
+    "typescript": "^2.4"
+  }
+}
