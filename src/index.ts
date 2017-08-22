@@ -3,6 +3,7 @@ export * from './author';
 export * from './configuration';
 export * from './error';
 export * from './file';
+export * from './genre';
 export * from './session';
 export * from './slide';
 export * from './user';
