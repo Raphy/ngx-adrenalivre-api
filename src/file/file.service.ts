@@ -10,6 +10,8 @@ export class FileService {
     }
 
     updateUrl(file: File) {
-        this.fileRepository.getContents(file).subscribe((blob: Blob) => file.url = this.domSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob)));
+        if (file && file.id) {
+            this.fileRepository.getContents(file).subscribe((blob: Blob) => file.url = this.domSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob)));
+        }
     }
 }
