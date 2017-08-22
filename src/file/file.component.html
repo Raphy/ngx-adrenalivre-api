@@ -1,6 +1,6 @@
 <div [ngSwitch]="fileType">
     <div *ngSwitchCase="'image'">
-        <img class="file-image" alt="{{file.id}}" [src]="url">
+        <img class="file-image" alt="{{file.id}}" [src]="file.url">
     </div>
     <div *ngSwitchDefault></div>
 </div>

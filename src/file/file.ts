@@ -1,3 +1,6 @@
+import { SafeResourceUrl } from '@angular/platform-browser';
+
+
 import { User } from '../user';
 
 export class File {
@@ -8,6 +11,7 @@ export class File {
     public updatedAt: Date;
     public createdBy: User;
     public contents: any;
+    public url: SafeResourceUrl;
 
     constructor(data: any = {}) {
         this.hydrate(data);

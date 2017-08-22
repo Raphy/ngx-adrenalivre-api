@@ -1,27 +1,17 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser'
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { File } from './file';
-import { FileRepository } from "./file.repository";
 import { FileService } from "./file.service";
 
 @Component({
     selector: 'adrenalivre-file',
     templateUrl: './file.component.html'
 })
-export class FileComponent implements OnInit, OnChanges {
+export class FileComponent implements OnChanges {
     @Input() private file: File;
     private fileType: string;
-    private url: SafeResourceUrl;
 
-    constructor(private fileRepository: FileRepository, private fileService: FileService) {
-    }
-
-    ngOnInit(): void {
-        // if (this.file.mimeType.startsWith('image/')) {
-        //     this.fileType = 'image';
-        // }
-        // this.fileContentsUrl = this.configuration.baseUrl + '/files/' + this.file.id + '/contents';
+    constructor(private fileService: FileService) {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -31,7 +21,7 @@ export class FileComponent implements OnInit, OnChanges {
                 this.fileType = 'image';
             }
 
-            this.fileService.getUrl(this.file).subscribe((url: string) => this.url = url);
+            this.fileService.updateUrl(this.file)
         }
     }
 }
