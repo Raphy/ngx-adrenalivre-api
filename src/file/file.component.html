@@ -1,7 +1,6 @@
-<div *ngIf="file" [ngSwitch]="fileType">
-    <span *ngSwitchCase="image">Image</span>
-    <a *ngSwitchDefault href="javascript:void(0)">Ouvrir le fichier</a>
-</div>
-<div *ngIf="!file">
-    Le fichier est vide
+<div [ngSwitch]="fileType">
+    <div *ngSwitchCase="'image'">
+        <img class="file-image" alt="{{file.id}}" [src]="url">
+    </div>
+    <div *ngSwitchDefault></div>
 </div>

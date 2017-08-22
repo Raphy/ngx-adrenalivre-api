@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AuthService, AuthHttpProvider } from './auth';
 import { SessionRepository } from './session';
 import { UserRepository } from './user';
-import { FileComponent, FileRepository } from './file';
+import { FileComponent, FileRepository, FileService } from './file';
 import { SlideRepository } from './slide';
 import { AuthorRepository } from './author';
 
@@ -19,6 +19,7 @@ const ADRENALIVRE_PROVIDERS = [
     AuthService,
     UserRepository,
     FileRepository,
+    FileService,
     SlideRepository,
     AuthorRepository
 ];

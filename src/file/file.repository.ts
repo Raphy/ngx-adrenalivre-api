@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response, Headers } from '@angular/http';
+import { Response, Headers, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -92,7 +92,16 @@ export class FileRepository {
             .map((response: Response) => null);
     }
 
-    public getContents(file: File) {
+    public getContents(file: File): Observable<Blob | Error> {
+        return this.http.get(this.configuration.baseUrl + '/files/' + file.id + '/contents', {responseType: ResponseContentType.Blob})
+            .map((response: Response) => response.blob())
+            .catch((errorCaught: any) => {
+                const error = ErrorFactory.create(errorCaught);
+                if (error) {
+                    return Observable.of(error);
+                }
 
+                throw errorCaught;
+            });
     }
 }

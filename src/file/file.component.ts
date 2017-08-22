@@ -1,6 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser'
 
 import { File } from './file';
+import { FileRepository } from "./file.repository";
+import { FileService } from "./file.service";
 
 @Component({
     selector: 'adrenalivre-file',
@@ -9,8 +12,9 @@ import { File } from './file';
 export class FileComponent implements OnInit, OnChanges {
     @Input() private file: File;
     private fileType: string;
+    private url: SafeResourceUrl;
 
-    constructor() {
+    constructor(private fileRepository: FileRepository, private fileService: FileService) {
     }
 
     ngOnInit(): void {
@@ -26,6 +30,8 @@ export class FileComponent implements OnInit, OnChanges {
             if (this.file.mimeType && this.file.mimeType.startsWith('image/')) {
                 this.fileType = 'image';
             }
+
+            this.fileService.getUrl(this.file).subscribe((url: string) => this.url = url);
         }
     }
 }
