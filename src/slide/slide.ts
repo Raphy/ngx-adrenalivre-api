@@ -18,11 +18,11 @@ export class Slide {
         this.createdAt = new Date(data.createdAt);
         this.updatedAt = new Date(data.updatedAt);
 
-        if (data.file) {
+        if (data.backgroundImageFile) {
             if (this.backgroundImageFile instanceof File) {
-                this.backgroundImageFile.hydrate(data.file);
+                this.backgroundImageFile.hydrate(data.backgroundImageFile);
             } else {
-                this.backgroundImageFile = new File(data.file);
+                this.backgroundImageFile = new File(data.backgroundImageFile);
             }
         }
 
