@@ -1,3 +1,5 @@
+import { File } from "../file";
+
 export class User {
     public id: string;
     public emailAddress: string;
@@ -8,6 +10,7 @@ export class User {
     public subscribedToNewsletter: boolean;
     public credits: number;
     public createdAt: Date;
+    public profilePhotoFile: File;
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -17,6 +20,14 @@ export class User {
         Object.assign(this, data);
 
         this.createdAt = new Date(data.createdAt);
+
+        if (data.profilePhotoFile) {
+            if (this.profilePhotoFile instanceof File) {
+                this.profilePhotoFile.hydrate(data.profilePhotoFile);
+            } else {
+                this.profilePhotoFile = new File(data.profilePhotoFile);
+            }
+        }
 
         return this;
     }
