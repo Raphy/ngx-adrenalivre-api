@@ -13,7 +13,7 @@ export class SlideRepository {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: URLSearchParams | object = {}): Observable<Slide[] | Error> {
+    public list(params: object = {}): Observable<Slide[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/slides', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((slideObject) => new Slide(slideObject)))

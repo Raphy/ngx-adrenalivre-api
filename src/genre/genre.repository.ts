@@ -13,7 +13,7 @@ export class GenreRepository {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: URLSearchParams | object = {}): Observable<Genre[] | Error> {
+    public list(params: object = {}): Observable<Genre[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/genres', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((genreObject) => new Genre(genreObject)))

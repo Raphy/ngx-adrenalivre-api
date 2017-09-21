@@ -13,7 +13,7 @@ export class AuthorRepository {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: URLSearchParams | object = {}): Observable<Author[] | Error> {
+    public list(params: object = {}): Observable<Author[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/authors', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((authorObject) => new Author(authorObject)))

@@ -13,7 +13,7 @@ export class FileRepository {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: URLSearchParams | object = {}): Observable<File[] | Error> {
+    public list(params: object = {}): Observable<File[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/files', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((fileObject) => new File(fileObject)))
