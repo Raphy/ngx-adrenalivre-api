@@ -3,6 +3,7 @@ import { File } from '../file';
 export class Slide {
     public id: string;
     public title: string;
+    public description: string;
     public position: number;
     public backgroundFile: File;
     public createdAt: Date;
