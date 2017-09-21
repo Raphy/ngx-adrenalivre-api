@@ -9,6 +9,8 @@ import { FileComponent, FileRepository, FileService } from './file';
 import { SlideRepository } from './slide';
 import { AuthorRepository } from './author';
 import { GenreRepository } from './genre';
+import { CreditOfferRepository } from "./credit-offer/credit-offer.repository";
+import { CollectionRepository } from "./collection/collection.repository";
 
 const ADRENALIVRE_COMPONENTS = [
     FileComponent
@@ -23,7 +25,9 @@ const ADRENALIVRE_PROVIDERS = [
     FileRepository,
     SlideRepository,
     AuthorRepository,
-    GenreRepository
+    GenreRepository,
+    CollectionRepository,
+    CreditOfferRepository,
 ];
 
 @NgModule({
