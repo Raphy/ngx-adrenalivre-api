@@ -3,7 +3,7 @@ import { RequestOptions, XHRBackend } from '@angular/http';
 
 import { AuthHttp } from './auth-http';
 
-function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions)
+export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions)
 {
     return new AuthHttp(backend, defaultOptions);
 }
