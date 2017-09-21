@@ -1,11 +1,17 @@
 import { File } from "../file";
+import { Volume } from "../volume";
 
 export class Author {
     public id: string;
     public firstName: string;
     public lastName: string;
-    public description: string;
+    public description?: string;
     public profileImageFile: File;
+    public facebookUrl?: string;
+    public twitterUrl?: string;
+    public websiteUrl?: string;
+    public recommendationRate?: string;
+    public volumes: Volume[];
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -20,6 +26,10 @@ export class Author {
             } else {
                 this.profileImageFile = new File(data.profileImageFile);
             }
+        }
+
+        if (data.volumes) {
+            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
         }
 
         return this;
