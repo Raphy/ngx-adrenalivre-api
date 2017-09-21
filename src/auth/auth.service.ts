@@ -67,9 +67,12 @@ export class AuthService {
 
                 return this.sessionRepository
                     .save(sessionRequest)
-                    .map((session: Session) => {
-                        this.setSession(session);
-                        return true;
+                    .map((session: Session | Error) => {
+                        if (session instanceof Session) {
+                            this.setSession(session);
+                            return true;
+                        }
+                        return false;
                     }).catch(() => {
                         return Observable.of(false);
                     });
