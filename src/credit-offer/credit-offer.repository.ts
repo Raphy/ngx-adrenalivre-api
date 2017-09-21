@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
-import { CreditOffer } from './creditOffer';
+import { CreditOffer } from './credit-offer';
 import { Error, ErrorFactory } from '../error';
 
 @Injectable()
