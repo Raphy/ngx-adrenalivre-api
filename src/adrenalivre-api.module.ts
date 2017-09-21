@@ -16,11 +16,11 @@ const ADRENALIVRE_COMPONENTS = [
 
 const ADRENALIVRE_PROVIDERS = [
     AuthHttpProvider.provide(),
+    FileService,
     SessionRepository,
     AuthService,
     UserRepository,
     FileRepository,
-    FileService,
     SlideRepository,
     AuthorRepository,
     GenreRepository
