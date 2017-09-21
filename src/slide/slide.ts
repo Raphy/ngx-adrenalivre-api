@@ -4,7 +4,7 @@ export class Slide {
     public id: string;
     public title: string;
     public position: number;
-    public backgroundImageFile: File;
+    public backgroundFile: File;
     public createdAt: Date;
     public updatedAt: Date;
 
@@ -18,11 +18,11 @@ export class Slide {
         this.createdAt = new Date(data.createdAt);
         this.updatedAt = new Date(data.updatedAt);
 
-        if (data.backgroundImageFile) {
-            if (this.backgroundImageFile instanceof File) {
-                this.backgroundImageFile.hydrate(data.backgroundImageFile);
+        if (data.backgroundFile) {
+            if (this.backgroundFile instanceof File) {
+                this.backgroundFile.hydrate(data.backgroundFile);
             } else {
-                this.backgroundImageFile = new File(data.backgroundImageFile);
+                this.backgroundFile = new File(data.backgroundFile);
             }
         }
 
