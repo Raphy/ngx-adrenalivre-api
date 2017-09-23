@@ -11,3 +11,4 @@ export * from './slide';
 export * from './user';
 export * from './volume';
 export * from './adrenalivre-api.module';
+export * from './repository'

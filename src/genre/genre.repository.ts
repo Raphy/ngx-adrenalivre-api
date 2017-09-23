@@ -7,9 +7,10 @@ import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
 import { Genre } from './genre';
 import { Error, ErrorFactory } from '../error';
+import { Repository } from "../repository";
 
 @Injectable()
-export class GenreRepository {
+export class GenreRepository implements Repository<Genre> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 

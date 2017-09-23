@@ -7,9 +7,10 @@ import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
 import { Session } from './session';
 import { Error, ErrorFactory } from '../error';
+import { Repository } from "../repository";
 
 @Injectable()
-export class SessionRepository {
+export class SessionRepository implements Repository<Session> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
@@ -56,5 +57,10 @@ export class SessionRepository {
 
                 throw errorCaught;
             });
+    }
+
+
+    public list(params: Object = {}): Observable<Session[] | Error> {
+        return null;
     }
 }
