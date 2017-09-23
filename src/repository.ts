@@ -4,7 +4,7 @@ import { Error } from './error';
 
 export interface Repository<T>
 {
-    list(params: object = {}): Observable<T[] | Error>;
+    list(params: object): Observable<T[] | Error>;
 
     retrieve(id: string): Observable<T | Error>;
 
