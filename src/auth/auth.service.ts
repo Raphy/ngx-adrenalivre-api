@@ -24,12 +24,15 @@ export class AuthService {
             })
             .switchMap((userId) => {
                 if (userId) {
-                    return this.userRepository.retrieve(userId);
+                    return this.userRepository
+                        .catch(() => {
+                            return Observable.of(null);
+                        })
+                        .retrieve(userId);
                 }
 
                 return Observable.of(null);
-            })
-            .subscribe();
+            });
     }
 
     private setSession(session: Session | null) {
