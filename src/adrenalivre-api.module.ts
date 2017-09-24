@@ -7,7 +7,7 @@ import { SessionRepository } from './session';
 import { UserRepository } from './user';
 import { FileComponent, FileRepository, FileService } from './file';
 import { SlideRepository } from './slide';
-import { VolumeFactory, VisitRepository } from './visit';
+import { VisitFactory, VisitRepository } from './visit';
 import { AuthorRepository } from './author';
 import { GenreRepository } from './genre';
 import { CreditOfferRepository } from "./credit-offer";
@@ -26,7 +26,7 @@ const ADRENALIVRE_PROVIDERS = [
     FileRepository,
     FileService,
     SlideRepository,
-    VolumeFactory
+    VisitFactory,
     VisitRepository,
     AuthorRepository,
     GenreRepository,
