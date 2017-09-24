@@ -15,20 +15,13 @@ export class AuthService {
 
     getUser(): Observable<User | null> {
         return this.getSession()
-            .map((session: Session | Error) => {
+            .switchMap((session: Session | Error) => {
                 if (session instanceof Session && session.user && session.user.id) {
-                    return session.user.id;
-                }
-
-                return null;
-            })
-            .switchMap((userId) => {
-                if (userId) {
                     return this.userRepository
                         .catch(() => {
                             return Observable.of(null);
                         })
-                        .retrieve(userId);
+                        .retrieve(session.user.id);
                 }
 
                 return Observable.of(null);
