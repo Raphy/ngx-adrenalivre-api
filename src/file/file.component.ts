@@ -22,9 +22,15 @@ export class FileComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.file = changes.file.currentValue;
-        this.videoProperties = changes.videoProperties.currentValue;
-        this.imageProperties = changes.imageProperties.currentValue;
+        if (changes.file) {
+            this.file = changes.file.currentValue;
+        }
+        if (changes.videoProperties) {
+            this.videoProperties = changes.videoProperties.currentValue;
+        }
+        if (changes.imageProperties) {
+            this.imageProperties = changes.imageProperties.currentValue;
+        }
 
         if (this.file && this.file.id) {
             if (this.file.mimeType && this.file.mimeType.startsWith('image/')) {
