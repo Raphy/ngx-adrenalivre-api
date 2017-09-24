@@ -20,8 +20,7 @@ export class AuthService {
                     return this.userRepository.retrieve(session.user.id)
                         .catch(() => {
                             return Observable.of(null);
-                        })
-                        .retrieve(session.user.id);
+                        });
                 }
 
                 return Observable.of(null);
