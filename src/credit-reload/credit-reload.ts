@@ -1,14 +1,15 @@
-import { User } from '../user';
+import { User } from "../user";
 
-export abstract class Visit {
-
+export abstract class CreditReload {
     public id: string;
 
     public discriminator: string;
 
-    public user: User;
+    public credits: number;
 
-    public visitedAt: Date;
+    public createdAt: Date;
+
+    public user: User;
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -17,7 +18,7 @@ export abstract class Visit {
     hydrate(data: any) {
         Object.assign(this, data);
 
-        this.visitedAt = new Date(data.visitedAt);
+        this.createdAt = new Date(data.createdAt);
 
         if (data.user) {
             if (this.user instanceof User) {

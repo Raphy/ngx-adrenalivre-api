@@ -5,19 +5,20 @@ import 'rxjs/Rx';
 
 import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
-import { CreditOffer } from './credit-offer';
+import { CreditReload } from './credit-reload';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { CreditReloadFactory } from "./credit-reload-factory";
 
 @Injectable()
-export class CreditOfferRepository implements Repository<CreditOffer> {
+export class CreditReloadRepository implements Repository<CreditReload> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: object = {}): Observable<CreditOffer[] | Error> {
-        return this.http.get(this.configuration.baseUrl + '/creditOffers', {params: params})
+    public list(params: object = {}): Observable<CreditReload[] | Error> {
+        return this.http.get(this.configuration.baseUrl + '/creditReloads', {params: params})
             .map((response: Response) => response.json())
-            .map((data: object[]) => data.map((creditOfferObject) => new CreditOffer(creditOfferObject)))
+            .map((data: object[]) => data.map((creditReloadObject: any) => CreditReloadFactory.create(creditReloadObject.discriminator, creditReloadObject)))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -28,10 +29,10 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public retrieve(id: string): Observable<CreditOffer | Error> {
-        return this.http.get(this.configuration.baseUrl + '/creditOffers/' + id)
+    public retrieve(id: string): Observable<CreditReload | Error> {
+        return this.http.get(this.configuration.baseUrl + '/creditReloads/' + id)
             .map((response: Response) => response.json())
-            .map((data: object) => new CreditOffer(data))
+            .map((data: any) => CreditReloadFactory.create(data.discriminator, data))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -42,11 +43,11 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public save(creditOffer: CreditOffer): Observable<CreditOffer | Error> {
-        if (creditOffer.id) {
-            return this.http.patch(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id, creditOffer)
+    public save(creditReload: CreditReload): Observable<CreditReload | Error> {
+        if (creditReload.id) {
+            return this.http.patch(this.configuration.baseUrl + '/creditReloads/' + creditReload.id, creditReload)
                 .map((response: Response) => response.json())
-                .map((data: object) => creditOffer.hydrate(data))
+                .map((data: object) => creditReload.hydrate(data))
                 .catch((errorCaught: any) => {
                     const error = ErrorFactory.create(errorCaught);
                     if (error) {
@@ -57,9 +58,9 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/creditOffers', creditOffer)
+        return this.http.post(this.configuration.baseUrl + '/creditReloads', creditReload)
             .map((response: Response) => response.json())
-            .map((data: object) => creditOffer.hydrate(data))
+            .map((data: object) => creditReload.hydrate(data))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -70,21 +71,8 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public remove(creditOffer: CreditOffer): Observable<void | Error> {
-        return this.http.delete(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id)
-            .map((response: Response) => null)
-            .catch((errorCaught: any) => {
-                const error = ErrorFactory.create(errorCaught);
-                if (error) {
-                    return Observable.of(error);
-                }
-
-                throw errorCaught;
-            });
-    }
-
-    public purchase(creditOffer: CreditOffer, stripeToken: string): Observable<void | Error> {
-        return this.http.post(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id + '/purchase', {stripeToken: stripeToken})
+    public remove(creditReload: CreditReload): Observable<void | Error> {
+        return this.http.delete(this.configuration.baseUrl + '/creditReloads/' + creditReload.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);

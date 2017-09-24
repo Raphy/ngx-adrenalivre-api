@@ -8,7 +8,7 @@ import { VolumeVisit } from "./volume-visit";
 
 @Injectable()
 export class VisitFactory {
-    public create(discriminator: string, data: any = {}): Visit
+    public static create(discriminator: string, data: any = {}): Visit
     {
         switch (discriminator) {
             case 'author':

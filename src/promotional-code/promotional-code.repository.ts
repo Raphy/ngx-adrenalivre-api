@@ -5,19 +5,20 @@ import 'rxjs/Rx';
 
 import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
-import { CreditOffer } from './credit-offer';
+import { PromotionalCode } from './promotional-code';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { PromotionalCodeFactory } from "./promotional-code-factory";
 
 @Injectable()
-export class CreditOfferRepository implements Repository<CreditOffer> {
+export class PromotionalCodeRepository implements Repository<PromotionalCode> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: object = {}): Observable<CreditOffer[] | Error> {
-        return this.http.get(this.configuration.baseUrl + '/creditOffers', {params: params})
+    public list(params: object = {}): Observable<PromotionalCode[] | Error> {
+        return this.http.get(this.configuration.baseUrl + '/promotionalCodes', {params: params})
             .map((response: Response) => response.json())
-            .map((data: object[]) => data.map((creditOfferObject) => new CreditOffer(creditOfferObject)))
+            .map((data: object[]) => data.map((promotionalCodeObject: any) => PromotionalCodeFactory.create(promotionalCodeObject.discriminator, promotionalCodeObject)))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -28,10 +29,10 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public retrieve(id: string): Observable<CreditOffer | Error> {
-        return this.http.get(this.configuration.baseUrl + '/creditOffers/' + id)
+    public retrieve(id: string): Observable<PromotionalCode | Error> {
+        return this.http.get(this.configuration.baseUrl + '/promotionalCodes/' + id)
             .map((response: Response) => response.json())
-            .map((data: object) => new CreditOffer(data))
+            .map((data: any) => PromotionalCodeFactory.create(data.discriminator, data))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -42,11 +43,11 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public save(creditOffer: CreditOffer): Observable<CreditOffer | Error> {
-        if (creditOffer.id) {
-            return this.http.patch(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id, creditOffer)
+    public save(promotionalCode: PromotionalCode): Observable<PromotionalCode | Error> {
+        if (promotionalCode.id) {
+            return this.http.patch(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id, promotionalCode)
                 .map((response: Response) => response.json())
-                .map((data: object) => creditOffer.hydrate(data))
+                .map((data: object) => promotionalCode.hydrate(data))
                 .catch((errorCaught: any) => {
                     const error = ErrorFactory.create(errorCaught);
                     if (error) {
@@ -57,9 +58,9 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/creditOffers', creditOffer)
+        return this.http.post(this.configuration.baseUrl + '/promotionalCodes', promotionalCode)
             .map((response: Response) => response.json())
-            .map((data: object) => creditOffer.hydrate(data))
+            .map((data: object) => promotionalCode.hydrate(data))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -70,8 +71,8 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public remove(creditOffer: CreditOffer): Observable<void | Error> {
-        return this.http.delete(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id)
+    public remove(promotionalCode: PromotionalCode): Observable<void | Error> {
+        return this.http.delete(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
@@ -83,8 +84,8 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public purchase(creditOffer: CreditOffer, stripeToken: string): Observable<void | Error> {
-        return this.http.post(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id + '/purchase', {stripeToken: stripeToken})
+    public redeem(code: string): Observable<void | Error> {
+        return this.http.post(this.configuration.baseUrl + '/creditOffers/' + code + '/redeem', null)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);

@@ -4,7 +4,7 @@ import { Error } from './error';
 import { ValidationError } from './validation-error';
 
 export class ErrorFactory {
-    static create(errorObject: any): Error | ValidationError {
+    public static create(errorObject: any): Error | ValidationError {
         if (errorObject instanceof Response) {
             errorObject = errorObject.json();
         }

@@ -1,4 +1,7 @@
 import { File } from "../file";
+import { Volume } from "../volume/volume";
+import { CreditReload } from "../credit-reload/credit-reload";
+import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
 
 export class User {
     public id: string;
@@ -11,6 +14,8 @@ export class User {
     public credits: number;
     public createdAt: Date;
     public profilePhotoFile: File;
+    public volumes: Volume[];
+    public creditReloads: CreditReload[];
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -27,6 +32,14 @@ export class User {
             } else {
                 this.profilePhotoFile = new File(data.profilePhotoFile);
             }
+        }
+
+        if (data.volumes) {
+            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
+        }
+
+        if (data.creditReloads) {
+            this.creditReloads = data.creditReloads.map((creditReloadData => CreditReloadFactory.create(creditReloadData.discriminator, creditReloadData)));
         }
 
         return this;
