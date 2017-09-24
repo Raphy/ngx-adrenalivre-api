@@ -2,6 +2,8 @@ import { User } from '../user';
 
 export class Visit {
 
+    public id: string;
+
     public discriminator: string;
 
     public user: User;
