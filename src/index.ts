@@ -9,6 +9,7 @@ export * from './genre';
 export * from './session';
 export * from './slide';
 export * from './user';
+export * from './visit';
 export * from './volume';
 export * from './adrenalivre-api.module';
 export * from './repository'
