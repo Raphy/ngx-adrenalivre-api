@@ -30,7 +30,7 @@ export class SessionRepository implements Repository<Session> {
 
     public save(session: Session): Observable<Session | Error> {
         if (session.id) {
-            throw new Error({code: 400, message: 'An existing session can not be saved'});
+            return Observable.of(new Error({code: 400, message: 'An existing session can not be saved'}));
         }
 
         return this.http.post(this.configuration.baseUrl + '/sessions', session)
