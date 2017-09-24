@@ -9,8 +9,9 @@ import { FileComponent, FileRepository, FileService } from './file';
 import { SlideRepository } from './slide';
 import { AuthorRepository } from './author';
 import { GenreRepository } from './genre';
-import { CreditOfferRepository } from "./credit-offer/credit-offer.repository";
-import { CollectionRepository } from "./collection/collection.repository";
+import { CreditOfferRepository } from "./credit-offer";
+import { CollectionRepository } from "./collection";
+import { VolumeRepository } from "./volume";
 
 const ADRENALIVRE_COMPONENTS = [
     FileComponent
