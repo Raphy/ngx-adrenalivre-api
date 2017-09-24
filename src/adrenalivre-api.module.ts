@@ -19,9 +19,9 @@ const ADRENALIVRE_COMPONENTS = [
 
 const ADRENALIVRE_PROVIDERS = [
     AuthHttpProvider.provide(),
-    FileService,
     SessionRepository,
     AuthService,
+    FileService,
     UserRepository,
     FileRepository,
     SlideRepository,
