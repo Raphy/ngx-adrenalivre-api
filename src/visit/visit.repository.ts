@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject,forwardRef } from "@angular/core";
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -12,7 +12,7 @@ import { VisitFactory } from "./visit-factory";
 
 @Injectable()
 export class VisitRepository implements Repository<Visit> {
-    constructor(private http: AuthHttp, private configuration: Configuration, private visitFactory: VisitFactory) {
+    constructor(private http: AuthHttp, private configuration: Configuration, @Inject(forwardRef(() => VisitFactory)) private visitFactory: VisitFactory) {
     }
 
     public list(params: object = {}): Observable<Visit[] | Error> {
