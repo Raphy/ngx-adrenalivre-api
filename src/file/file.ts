@@ -5,13 +5,21 @@ import { User } from '../user';
 
 export class File {
     public id: string;
+
     public mimeType: string;
+
     public size: number;
+
     public createdAt: Date;
+
     public updatedAt: Date;
+
     public createdBy: User;
+
     public contents: any;
-    public url: SafeResourceUrl;
+
+    public url: SafeResourceUrl | string;
+
     public attach: string;
 
     constructor(data: any = {}) {
