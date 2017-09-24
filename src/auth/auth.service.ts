@@ -16,8 +16,8 @@ export class AuthService {
     getUser(): Observable<User | null> {
         return this.getSession()
             .switchMap((session: Session | Error) => {
-                if (session instanceof Session && session.user && session.user.id) {
-                    return this.userRepository
+                if (session && session instanceof Session && session.user && session.user.id) {
+                    return this.userRepository.retrieve(session.user.id)
                         .catch(() => {
                             return Observable.of(null);
                         })
