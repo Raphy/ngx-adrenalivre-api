@@ -4,8 +4,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FileRepository } from "./file.repository";
 import { File } from "./file";
 import { AuthService } from "../auth";
-import { Session } from "../session/session";
+import { Session } from "../session";
 import { Configuration } from "../configuration";
+import { Error } from "../error";
 
 @Injectable()
 export class FileService {
