@@ -10,7 +10,7 @@ import { FileService } from "./file.service";
 export class FileComponent implements OnChanges {
     @Input() private file: File;
 
-    @Input() private videoProperties: any = {
+    @Input() private videoAttributes: any = {
         autoplay: false,
         controls: true,
         muted: false,
@@ -19,7 +19,7 @@ export class FileComponent implements OnChanges {
         height: null,
     };
 
-    @Input() private imageProperties: any = {
+    @Input() private imageAttributes: any = {
         classes: null,
         width: null,
         height: null,
@@ -33,22 +33,24 @@ export class FileComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.file) {
             this.file = changes.file.currentValue;
-        }
-        if (changes.videoProperties) {
-            this.videoProperties = changes.videoProperties.currentValue;
-        }
-        if (changes.imageProperties) {
-            this.imageProperties = changes.imageProperties.currentValue;
-        }
 
-        if (this.file && this.file.id) {
-            if (this.file.mimeType && this.file.mimeType.startsWith('image/')) {
-                this.fileType = 'image';
-            } else  if (this.file.mimeType && this.file.mimeType.startsWith('video/')) {
-                this.fileType = 'video';
+            if (this.file && this.file.id) {
+                if (this.file.mimeType && this.file.mimeType.startsWith('image/')) {
+                    this.fileType = 'image';
+                } else if (this.file.mimeType && this.file.mimeType.startsWith('video/')) {
+                    this.fileType = 'video';
+                }
+
+                this.fileService.updateUrl(this.file)
             }
+        }
 
-            this.fileService.updateUrl(this.file)
+        if (changes.videoAttributes) {
+            this.videoAttributes = changes.videoAttributes.currentValue;
+        }
+
+        if (changes.imageAttributes) {
+            this.imageAttributes = changes.imageAttributes.currentValue;
         }
     }
 }
