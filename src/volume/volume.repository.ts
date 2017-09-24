@@ -82,4 +82,17 @@ export class VolumeRepository implements Repository<Volume> {
                 throw errorCaught;
             });
     }
+
+    public buy(volume: Volume): Observable<void | Error> {
+        return this.http.post(this.configuration.baseUrl + '/volumes/' + volume.id + '/buy', null)
+            .map((response: Response) => null)
+            .catch((errorCaught: any) => {
+                const error = ErrorFactory.create(errorCaught);
+                if (error) {
+                    return Observable.of(error);
+                }
+
+                throw errorCaught;
+            });
+    }
 }
