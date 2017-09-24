@@ -35,11 +35,11 @@ export class User {
         }
 
         if (data.volumes) {
-            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
+            this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
         }
 
         if (data.creditReloads) {
-            this.creditReloads = data.creditReloads.map((creditReloadData => CreditReloadFactory.create(creditReloadData.discriminator, creditReloadData)));
+            this.creditReloads = data.creditReloads.map((creditReloadData) => CreditReloadFactory.create(creditReloadData.discriminator, creditReloadData));
         }
 
         return this;

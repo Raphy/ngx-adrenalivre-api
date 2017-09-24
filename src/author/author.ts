@@ -29,7 +29,7 @@ export class Author {
         }
 
         if (data.volumes) {
-            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
+            this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
         }
 
         return this;

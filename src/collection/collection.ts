@@ -51,11 +51,11 @@ export class Collection {
         }
 
         if (data.authors) {
-            this.authors = data.authors.map((authorData => new Author(authorData)));
+            this.authors = data.authors.map((authorData) => new Author(authorData));
         }
 
         if (data.volumes) {
-            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
+            this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
         }
 
         return this;
