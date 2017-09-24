@@ -10,10 +10,19 @@ import { FileService } from "./file.service";
 export class FileComponent implements OnChanges {
     @Input() private file: File;
 
-    @Input() private videoProperties: any;
+    @Input() private videoProperties: any = {
+        autoplay: false,
+        controls: true,
+        muted: false,
+        classes: null,
+        width: null,
+        height: null,
+    };
 
     @Input() private imageProperties: any = {
-
+        classes: null,
+        width: null,
+        height: null,
     };
 
     private fileType: string;
