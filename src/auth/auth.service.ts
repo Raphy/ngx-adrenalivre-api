@@ -4,12 +4,32 @@ import 'rxjs/Rx';
 
 import { Error } from '../error';
 import { SessionRepository, Session } from '../session';
+import { User, UserRepository } from "../user";
 
 @Injectable()
 export class AuthService {
     cachedSession: Session = null;
 
-    constructor(private sessionRepository: SessionRepository) {
+    constructor(private sessionRepository: SessionRepository, private userRepository: UserRepository) {
+    }
+
+    getUser(): Observable<User | null> {
+        return this.getSession()
+            .map((session: Session | Error) => {
+                if (session instanceof Session && session.user && session.user.id) {
+                    return session.user.id;
+                }
+
+                return null;
+            })
+            .switchMap((userId) => {
+                if (userId) {
+                    return this.userRepository.retrieve(userId);
+                }
+
+                return Observable.of(null);
+            })
+            .subscribe();
     }
 
     private setSession(session: Session | null) {
