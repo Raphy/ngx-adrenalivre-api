@@ -10,17 +10,24 @@ import { FileService } from "./file.service";
 export class FileComponent implements OnChanges {
     @Input() private file: File;
 
+    @Input() private wrapperAttributes: any = {
+        classes: null,
+        style: null,
+    };
+
     @Input() private videoAttributes: any = {
         autoplay: false,
         controls: true,
         muted: false,
         classes: null,
+        style: null,
         width: null,
         height: null,
     };
 
     @Input() private imageAttributes: any = {
         classes: null,
+        style: null,
         width: null,
         height: null,
     };
@@ -51,6 +58,10 @@ export class FileComponent implements OnChanges {
 
         if (changes.imageAttributes) {
             this.imageAttributes = changes.imageAttributes.currentValue;
+        }
+
+        if (changes.wrapperAttributes) {
+            this.wrapperAttributes = changes.wrapperAttributes.currentValue;
         }
     }
 }
