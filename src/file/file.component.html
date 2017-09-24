@@ -1,4 +1,4 @@
 <div *ngIf="file.url" [ngSwitch]="fileType">
-    <img *ngSwitchCase="'image'" [ngClass]="imageProperties.classes" [width]="imageProperties.width" [height]="imageProperties.width" [alt]="file.id" [src]="file.url">
-    <video *ngSwitchCase="'video'" [ngClass]="videoProperties.classes" [width]="videoProperties.width" [height]="videoProperties.width" [controls]="videoProperties.controls" [muted]="videoProperties.muted" [autoplay]="videoProperties.autoplay" [src]="file.url"></video>
+    <img *ngSwitchCase="'image'" [ngClass]="imageProperties.classes" [attr.width]="imageProperties.width ? imageProperties.width : null" [attr.height]="imageProperties.height ? imageProperties.height : null" [alt]="file.id" [src]="file.url">
+    <video *ngSwitchCase="'video'" [ngClass]="videoProperties.classes" [attr.width]="videoProperties.width ? videoProperties.width : null" [attr.height]="videoProperties.height ? videoProperties.height : null" [attr.controls]="videoProperties.controls ? videoProperties.controls : null" [attr.muted]="videoProperties.muted ? videoProperties.muted : null" [attr.autoplay]="videoProperties.autoplay ? videoProperties.autoplay : null" [src]="file.url"></video>
 </div>
