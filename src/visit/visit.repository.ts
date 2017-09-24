@@ -8,16 +8,17 @@ import { Configuration } from '../configuration';
 import { Visit } from './visit';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { VisitFactory } from "./visit-factory";
 
 @Injectable()
 export class VisitRepository implements Repository<Visit> {
-    constructor(private http: AuthHttp, private configuration: Configuration) {
+    constructor(private http: AuthHttp, private configuration: Configuration, private visitFactory: VisitFactory) {
     }
 
     public list(params: object = {}): Observable<Visit[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/visits', {params: params})
             .map((response: Response) => response.json())
-            .map((data: object[]) => data.map((visitObject) => new Visit(visitObject)))
+            .map((data: object[]) => data.map((visitObject: any) => this.visitFactory.create(visitObject.discriminator, visitObject)))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
@@ -31,7 +32,7 @@ export class VisitRepository implements Repository<Visit> {
     public retrieve(id: string): Observable<Visit | Error> {
         return this.http.get(this.configuration.baseUrl + '/visits/' + id)
             .map((response: Response) => response.json())
-            .map((data: object) => new Visit(data))
+            .map((data: any) => this.visitFactory.create(data.discriminator, data))
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
                 if (error) {
