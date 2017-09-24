@@ -27,6 +27,7 @@ const ADRENALIVRE_PROVIDERS = [
     AuthorRepository,
     GenreRepository,
     CollectionRepository,
+    VolumeRepository,
     CreditOfferRepository,
 ];
 
