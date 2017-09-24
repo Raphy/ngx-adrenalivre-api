@@ -13,19 +13,14 @@ export class VisitFactory {
         switch (discriminator) {
             case 'author':
                 return new AuthorVisit(data);
-                break;
             case 'collection':
                 return new CollectionVisit(data);
-                break;
             case 'genre':
                 return new GenreVisit(data);
-                break;
             case 'volume':
                 return new VolumeVisit(data);
-                break;
             default:
                 throw new Error('The visit discriminator "' + discriminator + '" is not handled');
-                break;
         }
     }
 }
