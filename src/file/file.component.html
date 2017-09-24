@@ -1,6 +1,4 @@
-<div [ngSwitch]="fileType">
-    <div *ngSwitchCase="'image'">
-        <img class="file-image" alt="{{file.id}}" [src]="file.url">
-    </div>
-    <div *ngSwitchDefault></div>
+<div *ngIf="file.url" [ngSwitch]="fileType">
+    <img *ngSwitchCase="'image'" class="file-image" [alt]="file.id" [src]="file.url">
+    <img *ngSwitchCase="'video'" class="file-video" [alt]="file.id" [src]="file.url">
 </div>

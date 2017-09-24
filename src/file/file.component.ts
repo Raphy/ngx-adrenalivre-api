@@ -19,6 +19,8 @@ export class FileComponent implements OnChanges {
         if (this.file && this.file.id) {
             if (this.file.mimeType && this.file.mimeType.startsWith('image/')) {
                 this.fileType = 'image';
+            } else  if (this.file.mimeType && this.file.mimeType.startsWith('video/')) {
+                this.fileType = 'video';
             }
 
             this.fileService.updateUrl(this.file)

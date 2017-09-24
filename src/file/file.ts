@@ -12,6 +12,7 @@ export class File {
     public createdBy: User;
     public contents: any;
     public url: SafeResourceUrl;
+    public attach: string;
 
     constructor(data: any = {}) {
         this.hydrate(data);

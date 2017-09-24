@@ -10,7 +10,7 @@ export class FileService {
     }
 
     updateUrl(file: File) {
-        if (file && file.id) {
+        if (file && file.id && file.url === null) {
             this.fileRepository.getContents(file).subscribe((blob: Blob) => file.url = this.domSanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob)));
         }
     }
