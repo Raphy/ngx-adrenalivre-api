@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Collection } from './collection';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { CollectionForm } from "./collection-form";
 
 @Injectable()
 export class CollectionRepository implements Repository<Collection> {
@@ -42,9 +43,9 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    save(collection: Collection): Observable<Collection | Error> {
-        if (collection.id) {
-            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, collection)
+    save(form: CollectionForm, collection: Collection = null): Observable<Collection | Error> {
+        if (collection && collection.id) {
+            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, form)
                 .map((response: Response) => response.json())
                 .map((data: object) => collection.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class CollectionRepository implements Repository<Collection> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/collections', collection)
+        return this.http.post(this.configuration.baseUrl + '/collections', form)
             .map((response: Response) => response.json())
             .map((data: object) => collection.hydrate(data))
             .catch((errorCaught: any) => {

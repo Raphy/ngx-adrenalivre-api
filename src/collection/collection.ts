@@ -18,7 +18,7 @@ export class Collection {
 
     pegi?: number;
 
-    singleVolume: string;
+    singleVolume: boolean;
 
     recommendationRate: string;
 
