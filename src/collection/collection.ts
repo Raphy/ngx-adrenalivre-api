@@ -4,20 +4,33 @@ import { Genre } from "../genre";
 import { Volume } from "../volume";
 
 export class Collection {
-    public id: string;
-    public name: string;
-    public genre: Genre;
-    public backgroundFile: File;
-    public synopsis?: string;
-    public duration?: number;
-    public pegi?: number;
-    public singleVolume: string;
-    public recommendationRate: string;
-    public createdAt: string;
-    public updatedAt: string;
-    public volumes: Volume[];
-    public authors: Author[];
-    public coverFile: File;
+    id: string;
+
+    name: string;
+
+    genre: Genre;
+
+    backgroundFile: File;
+
+    synopsis?: string;
+
+    duration?: number;
+
+    pegi?: number;
+
+    singleVolume: string;
+
+    recommendationRate: string;
+
+    createdAt: string;
+
+    updatedAt: string;
+
+    volumes: Volume[];
+
+    authors: Author[];
+
+    coverFile: File;
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -59,21 +72,5 @@ export class Collection {
         }
 
         return this;
-    }
-
-    toJson(): object {
-        let obj = (JSON.parse(JSON.stringify(this)));
-
-        if (this.backgroundFile) {
-            obj.backgroundFile = this.backgroundFile.id;
-        }
-        if (this.coverFile) {
-            obj.coverFile = this.coverFile.id;
-        }
-        if (this.genre) {
-            obj.genre = this.genre.id;
-        }
-
-        return obj;
     }
 }

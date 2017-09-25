@@ -14,7 +14,7 @@ export class AuthorRepository implements Repository<Author> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: object = {}): Observable<Author[] | Error> {
+    list(params: object = {}): Observable<Author[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/authors', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((authorObject) => new Author(authorObject)))
@@ -28,7 +28,7 @@ export class AuthorRepository implements Repository<Author> {
             });
     }
 
-    public retrieve(id: string): Observable<Author | Error> {
+    retrieve(id: string): Observable<Author | Error> {
         return this.http.get(this.configuration.baseUrl + '/authors/' + id)
             .map((response: Response) => response.json())
             .map((data: object) => new Author(data))
@@ -42,9 +42,9 @@ export class AuthorRepository implements Repository<Author> {
             });
     }
 
-    public save(author: Author): Observable<Author | Error> {
+    save(author: Author): Observable<Author | Error> {
         if (author.id) {
-            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, author.toJson())
+            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, author)
                 .map((response: Response) => response.json())
                 .map((data: object) => author.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +57,7 @@ export class AuthorRepository implements Repository<Author> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/authors', author.toJson())
+        return this.http.post(this.configuration.baseUrl + '/authors', author)
             .map((response: Response) => response.json())
             .map((data: object) => author.hydrate(data))
             .catch((errorCaught: any) => {
@@ -70,7 +70,7 @@ export class AuthorRepository implements Repository<Author> {
             });
     }
 
-    public remove(author: Author): Observable<void | Error> {
+    remove(author: Author): Observable<void | Error> {
         return this.http.delete(this.configuration.baseUrl + '/authors/' + author.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {

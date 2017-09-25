@@ -2,22 +2,31 @@ import { File } from "../file";
 import { Volume } from "../volume";
 
 export class Author {
-    public id: string;
-    public firstName: string;
-    public lastName: string;
-    public description?: string;
-    public profileImageFile: File;
-    public facebookUrl?: string;
-    public twitterUrl?: string;
-    public websiteUrl?: string;
-    public recommendationRate?: string;
-    public volumes: Volume[];
+    id: string;
+
+    firstName: string;
+
+    lastName: string;
+
+    description?: string;
+
+    profileImageFile: File;
+
+    facebookUrl?: string;
+
+    twitterUrl?: string;
+
+    websiteUrl?: string;
+
+    recommendationRate?: string;
+
+    volumes: Volume[];
 
     constructor(data: any = {}) {
         this.hydrate(data);
     }
 
-    hydrate(data: any) {
+    hydrate(data: any) : this {
         Object.assign(this, data);
 
         if (data.profileImageFile) {
@@ -35,17 +44,7 @@ export class Author {
         return this;
     }
 
-    toJson(): object {
-        let obj = (JSON.parse(JSON.stringify(this)));
-
-        if (this.profileImageFile) {
-            obj.profileImageFile = this.profileImageFile.id;
-        }
-
-        return obj;
-    }
-
-    get fullName(): string {
+    get fullName(): string | null {
         if (this.firstName || this.lastName) {
             return this.firstName + ' ' + this.lastName;
         }

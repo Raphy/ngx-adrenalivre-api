@@ -4,18 +4,31 @@ import { Collection } from "../collection";
 
 export class Volume {
     public id: string;
+
     public name?: string;
+
     public coverFile: File;
+
     public backgroundFile: File;
+
     public assetBundleFile: File;
+
     public storyFile: File;
+
     public collection: Collection;
+
     public synopsis?: string;
+
     public duration?: number;
+
     public creditsCost: number;
+
     public recommendationRate: string;
+
     public createdAt: string;
+
     public updatedAt: string;
+
     public authors: Author[];
 
     constructor(data: any = {}) {
@@ -70,32 +83,5 @@ export class Volume {
         }
 
         return this;
-    }
-
-    toJson(): object {
-        let obj = (JSON.parse(JSON.stringify(this)));
-
-        if (this.backgroundFile) {
-            obj.backgroundFile = this.backgroundFile.id;
-        }
-        if (this.coverFile) {
-            obj.coverFile = this.coverFile.id;
-        }
-        if (this.assetBundleFile) {
-            obj.assetBundleFile = this.assetBundleFile.id;
-        }
-        if (this.storyFile) {
-            obj.storyFile = this.storyFile.id;
-        }
-        if (this.collection) {
-            obj.collection = this.collection.id;
-        }
-        if (this.authors.length > 0) {
-            obj.authors = this.authors.map((author: Author) => author.id);
-        } else {
-            obj.collection = [];
-        }
-
-        return obj;
     }
 }

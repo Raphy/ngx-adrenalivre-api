@@ -14,7 +14,7 @@ export class CollectionRepository implements Repository<Collection> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    public list(params: object = {}): Observable<Collection[] | Error> {
+    list(params: object = {}): Observable<Collection[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/collections', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((collectionObject) => new Collection(collectionObject)))
@@ -28,7 +28,7 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    public retrieve(id: string): Observable<Collection | Error> {
+    retrieve(id: string): Observable<Collection | Error> {
         return this.http.get(this.configuration.baseUrl + '/collections/' + id)
             .map((response: Response) => response.json())
             .map((data: object) => new Collection(data))
@@ -42,7 +42,7 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    public save(collection: Collection): Observable<Collection | Error> {
+    save(collection: Collection): Observable<Collection | Error> {
         if (collection.id) {
             return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, collection.toJson())
                 .map((response: Response) => response.json())
@@ -70,7 +70,7 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    public remove(collection: Collection): Observable<void | Error> {
+    remove(collection: Collection): Observable<void | Error> {
         return this.http.delete(this.configuration.baseUrl + '/collections/' + collection.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
