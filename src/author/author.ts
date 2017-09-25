@@ -36,7 +36,7 @@ export class Author {
     }
 
     toJson(): object {
-        let obj = this as any;
+        let obj = Object.create(this);
 
         if (this.profileImageFile) {
             obj.profileImageFile = this.profileImageFile.id;
