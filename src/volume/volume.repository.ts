@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
-import { Volume } from './volume';
+import { Volume } from '../volume/volume';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
 
