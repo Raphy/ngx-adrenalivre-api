@@ -5,16 +5,29 @@ import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
 
 export class User {
     public id: string;
+
     public emailAddress: string;
+
+    public plainPassword: string;
+
     public firstName: string;
+
     public lastName: string;
+
     public administrator: boolean;
+
     public betaTester: boolean;
+
     public subscribedToNewsletter: boolean;
+
     public credits: number;
+
     public createdAt: Date;
+
     public profilePhotoFile: File;
+
     public volumes: Volume[];
+
     public creditReloads: CreditReload[];
 
     constructor(data: any = {}) {
