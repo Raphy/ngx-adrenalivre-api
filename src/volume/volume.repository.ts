@@ -44,7 +44,7 @@ export class VolumeRepository implements Repository<Volume> {
 
     public save(volume: Volume): Observable<Volume | Error> {
         if (volume.id) {
-            return this.http.patch(this.configuration.baseUrl + '/volumes/' + volume.id, volume)
+            return this.http.patch(this.configuration.baseUrl + '/volumes/' + volume.id, volume.toJson())
                 .map((response: Response) => response.json())
                 .map((data: object) => volume.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +57,7 @@ export class VolumeRepository implements Repository<Volume> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/volumes', volume)
+        return this.http.post(this.configuration.baseUrl + '/volumes', volume.toJson())
             .map((response: Response) => response.json())
             .map((data: object) => volume.hydrate(data))
             .catch((errorCaught: any) => {

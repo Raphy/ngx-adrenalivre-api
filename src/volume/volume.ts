@@ -71,4 +71,31 @@ export class Volume {
 
         return this;
     }
+
+    toJson(): object {
+        let obj = this as any;
+
+        if (this.backgroundFile) {
+            obj.backgroundFile = this.backgroundFile.id;
+        }
+        if (this.coverFile) {
+            obj.coverFile = this.coverFile.id;
+        }
+        if (this.assetBundleFile) {
+            obj.assetBundleFile = this.assetBundleFile.id;
+        }
+        if (this.storyFile) {
+            obj.storyFile = this.storyFile.id;
+        }
+        if (this.collection) {
+            obj.collection = this.collection.id;
+        }
+        if (this.authors.length > 0) {
+            obj.authors = this.authors.map((author: Author) => author.id);
+        } else {
+            obj.collection = [];
+        }
+
+        return obj;
+    }
 }

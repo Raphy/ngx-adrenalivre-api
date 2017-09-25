@@ -44,7 +44,7 @@ export class AuthorRepository implements Repository<Author> {
 
     public save(author: Author): Observable<Author | Error> {
         if (author.id) {
-            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, author)
+            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, author.toJson())
                 .map((response: Response) => response.json())
                 .map((data: object) => author.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +57,7 @@ export class AuthorRepository implements Repository<Author> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/authors', author)
+        return this.http.post(this.configuration.baseUrl + '/authors', author.toJson())
             .map((response: Response) => response.json())
             .map((data: object) => author.hydrate(data))
             .catch((errorCaught: any) => {

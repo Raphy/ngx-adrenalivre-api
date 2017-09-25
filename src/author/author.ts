@@ -35,6 +35,16 @@ export class Author {
         return this;
     }
 
+    toJson(): object {
+        let obj = this as any;
+
+        if (this.profileImageFile) {
+            obj.profileImageFile = this.profileImageFile.id;
+        }
+
+        return obj;
+    }
+
     get fullName(): string {
         if (this.firstName || this.lastName) {
             return this.firstName + ' ' + this.lastName;

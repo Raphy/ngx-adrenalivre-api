@@ -44,7 +44,7 @@ export class CollectionRepository implements Repository<Collection> {
 
     public save(collection: Collection): Observable<Collection | Error> {
         if (collection.id) {
-            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, collection)
+            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, collection.toJson())
                 .map((response: Response) => response.json())
                 .map((data: object) => collection.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +57,7 @@ export class CollectionRepository implements Repository<Collection> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/collections', collection)
+        return this.http.post(this.configuration.baseUrl + '/collections', collection.toJson())
             .map((response: Response) => response.json())
             .map((data: object) => collection.hydrate(data))
             .catch((errorCaught: any) => {

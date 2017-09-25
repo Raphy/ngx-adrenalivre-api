@@ -60,4 +60,20 @@ export class Collection {
 
         return this;
     }
+
+    toJson(): object {
+        let obj = this as any;
+
+        if (this.backgroundFile) {
+            obj.backgroundFile = this.backgroundFile.id;
+        }
+        if (this.coverFile) {
+            obj.coverFile = this.coverFile.id;
+        }
+        if (this.genre) {
+            obj.genre = this.genre.id;
+        }
+
+        return obj;
+    }
 }
