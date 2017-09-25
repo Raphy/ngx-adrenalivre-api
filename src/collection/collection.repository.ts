@@ -8,14 +8,13 @@ import { Configuration } from '../configuration';
 import { Collection } from './collection';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
-import { CollectionForm } from "./collection-form";
 
 @Injectable()
 export class CollectionRepository implements Repository<Collection> {
     constructor(private http: AuthHttp, private configuration: Configuration) {
     }
 
-    list(params: object = {}): Observable<Collection[] | Error> {
+    public list(params: object = {}): Observable<Collection[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/collections', {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((collectionObject) => new Collection(collectionObject)))
@@ -29,7 +28,7 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    retrieve(id: string): Observable<Collection | Error> {
+    public retrieve(id: string): Observable<Collection | Error> {
         return this.http.get(this.configuration.baseUrl + '/collections/' + id)
             .map((response: Response) => response.json())
             .map((data: object) => new Collection(data))
@@ -43,9 +42,9 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    save(form: CollectionForm, collection: Collection = null): Observable<Collection | Error> {
-        if (collection && collection.id) {
-            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, form)
+    public save(collection: Collection): Observable<Collection | Error> {
+        if (collection.id) {
+            return this.http.patch(this.configuration.baseUrl + '/collections/' + collection.id, collection)
                 .map((response: Response) => response.json())
                 .map((data: object) => collection.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -58,7 +57,7 @@ export class CollectionRepository implements Repository<Collection> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/collections', form)
+        return this.http.post(this.configuration.baseUrl + '/collections', collection)
             .map((response: Response) => response.json())
             .map((data: object) => collection.hydrate(data))
             .catch((errorCaught: any) => {
@@ -71,7 +70,7 @@ export class CollectionRepository implements Repository<Collection> {
             });
     }
 
-    remove(collection: Collection): Observable<void | Error> {
+    public remove(collection: Collection): Observable<void | Error> {
         return this.http.delete(this.configuration.baseUrl + '/collections/' + collection.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
