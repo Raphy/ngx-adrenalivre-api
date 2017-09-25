@@ -8,14 +8,14 @@ import { FileService } from "./file.service";
     templateUrl: './file.component.html'
 })
 export class FileComponent implements OnChanges {
-    @Input() private file: File;
+    @Input() file: File;
 
-    @Input() private wrapperAttributes: any = {
+    @Input() wrapperAttributes: any = {
         classes: null,
         style: null,
     };
 
-    @Input() private videoAttributes: any = {
+    @Input() videoAttributes: any = {
         autoplay: false,
         controls: true,
         muted: false,
@@ -25,14 +25,14 @@ export class FileComponent implements OnChanges {
         height: null,
     };
 
-    @Input() private imageAttributes: any = {
+    @Input() imageAttributes: any = {
         classes: null,
         style: null,
         width: null,
         height: null,
     };
 
-    private fileType: string;
+    fileType: string;
 
     constructor(private fileService: FileService) {
     }
