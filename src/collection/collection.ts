@@ -62,7 +62,7 @@ export class Collection {
     }
 
     toJson(): object {
-        let obj = Object.create(this);
+        let obj = (JSON.parse(JSON.stringify(this)));
 
         if (this.backgroundFile) {
             obj.backgroundFile = this.backgroundFile.id;
