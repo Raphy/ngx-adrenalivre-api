@@ -13,5 +13,5 @@ export abstract class Model {
         return this;
     }
 
-    abstract toForm(): Form;
+    abstract toForm(): Form<this>;
 }

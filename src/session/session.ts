@@ -2,7 +2,7 @@ import { User } from '../user';
 import { SessionForm } from "./session-form";
 import { Model } from "../model";
 
-export abstract class Session extends Model {
+export class Session extends Model {
     mode: string;
 
     expiresAt: Date;

@@ -22,6 +22,6 @@ export class VisitRepository extends Repository<Visit> {
     }
 
     protected createItem(itemData: any = {}): Visit {
-        return new VisitFactory.create(itemData.discriminator, itemData);
+        return VisitFactory.create(itemData.discriminator, itemData);
     }
 }

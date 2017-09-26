@@ -15,4 +15,5 @@ export * from './visit';
 export * from './volume';
 export * from './adrenalivre-api.module';
 export * from './form';
+export * from './model'
 export * from './repository'
