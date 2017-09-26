@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { Error } from '../error';
-import { SessionRepository, Session } from '../session';
+import { SessionRepository, Session, SessionForm } from '../session';
 import { User, UserRepository } from "../user";
 
 @Injectable()
@@ -73,7 +73,7 @@ export class AuthService {
             });
     }
 
-    signIn(sessionRequest: Session): Observable<boolean> {
+    signIn(sessionForm: SessionForm): Observable<boolean> {
         return this
             .isSignedIn()
             .flatMap((isSignedIn) => {
@@ -82,7 +82,7 @@ export class AuthService {
                 }
 
                 return this.sessionRepository
-                    .save(sessionRequest)
+                    .save(sessionForm)
                     .map((session: Session | Error) => {
                         if (session instanceof Session) {
                             this.setSession(session);

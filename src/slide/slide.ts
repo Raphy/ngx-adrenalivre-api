@@ -1,13 +1,19 @@
 import { File } from '../file';
 
 export class Slide {
-    public id: string;
-    public title: string;
-    public description: string;
-    public position: number;
-    public backgroundFile: File;
-    public createdAt: Date;
-    public updatedAt: Date;
+    id: string;
+
+    title: string;
+
+    description: string;
+
+    position: number;
+
+    backgroundFile: File;
+
+    createdAt: Date;
+
+    updatedAt: Date;
 
     constructor(data: any = {}) {
         this.hydrate(data);

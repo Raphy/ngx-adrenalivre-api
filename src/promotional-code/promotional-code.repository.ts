@@ -9,6 +9,7 @@ import { PromotionalCode } from './promotional-code';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
 import { PromotionalCodeFactory } from "./promotional-code-factory";
+import { PromotionalCodeForm } from "./promotional-code-form";
 
 @Injectable()
 export class PromotionalCodeRepository implements Repository<PromotionalCode> {
@@ -43,9 +44,9 @@ export class PromotionalCodeRepository implements Repository<PromotionalCode> {
             });
     }
 
-    public save(promotionalCode: PromotionalCode): Observable<PromotionalCode | Error> {
-        if (promotionalCode.id) {
-            return this.http.patch(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id, promotionalCode)
+    public save(promotionalCodeForm: PromotionalCodeForm, promotionalCode: PromotionalCode = null): Observable<PromotionalCode | Error> {
+        if (promotionalCode && promotionalCode.id) {
+            return this.http.patch(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id, promotionalCodeForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => promotionalCode.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -58,7 +59,7 @@ export class PromotionalCodeRepository implements Repository<PromotionalCode> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/promotionalCodes', promotionalCode)
+        return this.http.post(this.configuration.baseUrl + '/promotionalCodes', promotionalCodeForm)
             .map((response: Response) => response.json())
             .map((data: object) => promotionalCode.hydrate(data))
             .catch((errorCaught: any) => {

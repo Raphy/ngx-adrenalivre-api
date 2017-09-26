@@ -9,6 +9,7 @@ import { Visit } from './visit';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
 import { VisitFactory } from "./visit-factory";
+import { VisitForm } from "./visit-form";
 
 @Injectable()
 export class VisitRepository implements Repository<Visit> {
@@ -43,12 +44,12 @@ export class VisitRepository implements Repository<Visit> {
             });
     }
 
-    public save(visit: Visit): Observable<Visit | Error> {
-        if (visit.id) {
+    public save(visitForm: VisitForm, visit: Visit = null): Observable<Visit | Error> {
+        if (visit && visit.id) {
             return Observable.of(new Error({code: 400, message: 'An existing visit can not be saved'}));
         }
 
-        return this.http.post(this.configuration.baseUrl + '/' + visit.discriminator + 's/' + visit[visit.discriminator].id + '/visit', visit)
+        return this.http.post(this.configuration.baseUrl + '/' + visit.discriminator + 's/' + visit[visit.discriminator].id + '/visit', visitForm)
             .map((response: Response) => response.json())
             .map((data: object) => visit.hydrate(data))
             .catch((errorCaught: any) => {

@@ -2,9 +2,9 @@ import { CreditReload } from "./credit-reload";
 import { CreditsPromotionalCode } from "../promotional-code/credits-promotional-code";
 
 export class PromotionalCodeCreditReload extends CreditReload {
-    public discriminator: string = 'promotional_code';
+    discriminator: string = 'promotional_code';
 
-    public creditsPromotionalCode: CreditsPromotionalCode;
+    creditsPromotionalCode: CreditsPromotionalCode;
 
     hydrate(data: any) {
         if (data.creditsPromotionalCode) {

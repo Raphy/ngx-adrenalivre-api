@@ -1,15 +1,15 @@
 import { User } from "../user";
 
 export abstract class CreditReload {
-    public id: string;
+    id: string;
 
-    public discriminator: string;
+    discriminator: string;
 
-    public credits: number;
+    credits: number;
 
-    public createdAt: Date;
+    createdAt: Date;
 
-    public user: User;
+    user: User;
 
     constructor(data: any = {}) {
         this.hydrate(data);

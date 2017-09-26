@@ -4,31 +4,31 @@ import { CreditReload } from "../credit-reload/credit-reload";
 import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
 
 export class User {
-    public id: string;
+    id: string;
 
-    public emailAddress: string;
+    emailAddress: string;
 
-    public plainPassword: string;
+    plainPassword: string;
 
-    public firstName: string;
+    firstName: string;
 
-    public lastName: string;
+    lastName: string;
 
-    public administrator: boolean;
+    administrator: boolean;
 
-    public betaTester: boolean;
+    betaTester: boolean;
 
-    public subscribedToNewsletter: boolean;
+    subscribedToNewsletter: boolean;
 
-    public credits: number;
+    credits: number;
 
-    public createdAt: Date;
+    createdAt: Date;
 
-    public profilePhotoFile: File;
+    profilePhotoFile: File;
 
-    public volumes: Volume[];
+    volumes: Volume[];
 
-    public creditReloads: CreditReload[];
+    creditReloads: CreditReload[];
 
     constructor(data: any = {}) {
         this.hydrate(data);

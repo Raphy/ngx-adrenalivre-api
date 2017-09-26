@@ -1,21 +1,21 @@
 export abstract class PromotionalCode {
-    public id: string;
+    id: string;
 
-    public discriminator: string;
+    discriminator: string;
 
-    public code: string;
+    code: string;
 
-    public remainingUsages: number;
+    remainingUsages: number;
 
-    public usages: number;
+    usages: number;
 
-    public active: boolean;
+    active: boolean;
 
-    public startAt: Date;
+    startAt: Date;
 
-    public endAt: Date;
+    endAt: Date;
 
-    public createdAt: Date;
+    createdAt: Date;
 
     constructor(data: any = {}) {
         this.hydrate(data);

@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Genre } from './genre';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { GenreForm } from "./genre-form";
 
 @Injectable()
 export class GenreRepository implements Repository<Genre> {
@@ -42,9 +43,9 @@ export class GenreRepository implements Repository<Genre> {
             });
     }
 
-    public save(genre: Genre): Observable<Genre | Error> {
-        if (genre.id) {
-            return this.http.patch(this.configuration.baseUrl + '/genres/' + genre.id, genre)
+    public save(genreForm: GenreForm, genre: Genre = null): Observable<Genre | Error> {
+        if (genre && genre.id) {
+            return this.http.patch(this.configuration.baseUrl + '/genres/' + genre.id, genreForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => genre.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class GenreRepository implements Repository<Genre> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/genres', genre)
+        return this.http.post(this.configuration.baseUrl + '/genres', genreForm)
             .map((response: Response) => response.json())
             .map((data: object) => genre.hydrate(data))
             .catch((errorCaught: any) => {

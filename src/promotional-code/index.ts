@@ -3,4 +3,5 @@ export * from './credits-promotional-code';
 export * from './promotional-code.repository';
 export * from './promotional-code';
 export * from './promotional-code-factory';
+export * from './promotional-code-form';
 export * from './volume-promotional-code';

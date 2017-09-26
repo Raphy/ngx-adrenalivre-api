@@ -4,23 +4,23 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 import { User } from '../user';
 
 export class File {
-    public id: string;
+    id: string;
 
-    public mimeType: string;
+    mimeType: string;
 
-    public size: number;
+    size: number;
 
-    public createdAt: Date;
+    createdAt: Date;
 
-    public updatedAt: Date;
+    updatedAt: Date;
 
-    public createdBy: User;
+    createdBy: User;
 
-    public contents: any;
+    contents: any;
 
-    public url: SafeResourceUrl | string;
+    url: SafeResourceUrl | string;
 
-    public attach: string;
+    attach: string;
 
     constructor(data: any = {}) {
         this.hydrate(data);

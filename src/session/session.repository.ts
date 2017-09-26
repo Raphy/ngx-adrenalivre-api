@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Session } from './session';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { SessionForm } from "./session-form";
 
 @Injectable()
 export class SessionRepository implements Repository<Session> {
@@ -28,12 +29,12 @@ export class SessionRepository implements Repository<Session> {
             });
     }
 
-    public save(session: Session): Observable<Session | Error> {
-        if (session.id) {
+    public save(sessionForm: SessionForm, session: Session = null): Observable<Session | Error> {
+        if (session && session.id) {
             return Observable.of(new Error({code: 400, message: 'An existing session can not be saved'}));
         }
 
-        return this.http.post(this.configuration.baseUrl + '/sessions', session)
+        return this.http.post(this.configuration.baseUrl + '/sessions', sessionForm)
             .map((response: Response) => response.json())
             .map((data: object) => session.hydrate(data))
             .catch((errorCaught: any) => {

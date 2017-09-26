@@ -1,9 +1,11 @@
 import { File } from "../file";
 
 export class Genre {
-    public id: string;
-    public name: string;
-    public illustrationFile: File;
+    id: string;
+
+    name: string;
+
+    illustrationFile: File;
 
     constructor(data: any = {}) {
         this.hydrate(data);

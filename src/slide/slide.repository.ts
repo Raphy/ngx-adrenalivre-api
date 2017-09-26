@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Slide } from './slide';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { SlideForm } from "./slide-form";
 
 @Injectable()
 export class SlideRepository implements Repository<Slide> {
@@ -42,9 +43,9 @@ export class SlideRepository implements Repository<Slide> {
             });
     }
 
-    public save(slide: Slide): Observable<Slide | Error> {
-        if (slide.id) {
-            return this.http.patch(this.configuration.baseUrl + '/slides/' + slide.id, slide)
+    public save(slideForm: SlideForm, slide: Slide = null): Observable<Slide | Error> {
+        if (slide && slide.id) {
+            return this.http.patch(this.configuration.baseUrl + '/slides/' + slide.id, slideForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => slide.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class SlideRepository implements Repository<Slide> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/slides', slide)
+        return this.http.post(this.configuration.baseUrl + '/slides', slideForm)
             .map((response: Response) => response.json())
             .map((data: object) => slide.hydrate(data))
             .catch((errorCaught: any) => {

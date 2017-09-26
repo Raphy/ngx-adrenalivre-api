@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { File } from './file';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { FileForm } from "./file-form";
 
 @Injectable()
 export class FileRepository implements Repository<File> {
@@ -42,9 +43,9 @@ export class FileRepository implements Repository<File> {
             });
     }
 
-    public save(file: File): Observable<File | Error> {
-        if (file.id) {
-            return this.http.patch(this.configuration.baseUrl + '/files/' + file.id, file)
+    public save(fileForm: FileForm, file: File = null): Observable<File | Error> {
+        if (file && file.id) {
+            return this.http.patch(this.configuration.baseUrl + '/files/' + file.id, fileForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => file.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class FileRepository implements Repository<File> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/files', file)
+        return this.http.post(this.configuration.baseUrl + '/files', fileForm)
             .map((response: Response) => response.json())
             .map((data: object) => file.hydrate(data))
             .catch((errorCaught: any) => {

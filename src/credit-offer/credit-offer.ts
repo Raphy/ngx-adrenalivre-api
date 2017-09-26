@@ -1,13 +1,13 @@
 export class CreditOffer {
-    public id: string;
+    id: string;
 
-    public name: string;
+    name: string;
 
-    public credits: number;
+    credits: number;
 
-    public price: number;
+    price: number;
 
-    public currency: string;
+    currency: string;
 
     constructor(data: any = {}) {
         this.hydrate(data);
