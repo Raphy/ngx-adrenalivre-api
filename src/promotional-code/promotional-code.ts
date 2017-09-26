@@ -26,7 +26,7 @@ export abstract class PromotionalCode extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         this.createdAt = new Date(data.createdAt);
         this.endAt = new Date(data.endAt);

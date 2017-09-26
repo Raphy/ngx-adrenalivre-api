@@ -38,7 +38,7 @@ export class User extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         this.createdAt = new Date(data.createdAt);
 

@@ -17,7 +17,7 @@ export abstract class Session extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         this.expiresAt = new Date(data.expiresAt);
 

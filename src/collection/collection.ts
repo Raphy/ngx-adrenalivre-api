@@ -40,7 +40,7 @@ export class Collection extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         if (data.backgroundFile) {
             if (this.backgroundFile instanceof File) {

@@ -15,7 +15,7 @@ export class Genre extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         if (data.illustrationFile) {
             if (this.illustrationFile instanceof File) {

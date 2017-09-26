@@ -18,7 +18,7 @@ export abstract class Visit extends Model {
     }
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         this.visitedAt = new Date(data.visitedAt);
 
