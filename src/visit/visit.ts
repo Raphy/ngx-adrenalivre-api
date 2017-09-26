@@ -1,7 +1,8 @@
 import { User } from '../user';
 import { VisitForm } from "./visit-form";
+import { Model } from "../model";
 
-export abstract class Visit {
+export abstract class Visit extends Model {
 
     public id: string;
 

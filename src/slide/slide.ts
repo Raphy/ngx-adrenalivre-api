@@ -1,7 +1,8 @@
 import { File } from '../file';
 import { SlideForm } from "./slide-form";
+import { Model } from "../model";
 
-export class Slide {
+export class Slide extends Model {
     id: string;
 
     title: string;

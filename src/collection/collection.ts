@@ -3,8 +3,9 @@ import { File } from "../file";
 import { Genre } from "../genre";
 import { Volume } from '../volume/volume';
 import { CollectionForm } from "./collection-form";
+import { Model } from "../model";
 
-export class Collection {
+export class Collection extends Model {
     id: string;
 
     name: string;

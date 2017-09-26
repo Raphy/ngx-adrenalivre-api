@@ -1,7 +1,8 @@
 import { File } from "../file";
 import { GenreForm } from "./genre-form";
+import { Model } from "../model";
 
-export class Genre {
+export class Genre extends Model {
     id: string;
 
     name: string;

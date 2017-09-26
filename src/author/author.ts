@@ -1,8 +1,9 @@
 import { File } from "../file";
 import { Volume } from "../volume";
 import { AuthorForm } from "./author-form";
+import { Model } from "../model";
 
-export class Author {
+export class Author extends Model{
     id: string;
 
     firstName: string;

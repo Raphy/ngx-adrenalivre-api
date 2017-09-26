@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs/Observable';
 
-import { Form } from './form';
 import { Error } from './error';
 import { AuthHttp } from './auth';
 import { Configuration } from './configuration';
 import { Error, ErrorFactory } from './error';
+import { Model } from "./model";
 
-export abstract class Repository<T>
+export abstract class Repository<T extends Model>
 {
     constructor(protected http: AuthHttp, protected configuration: Configuration) {
     }

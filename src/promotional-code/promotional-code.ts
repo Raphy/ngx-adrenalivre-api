@@ -1,6 +1,7 @@
 import { PromotionalCodeForm } from "./promotional-code-form";
+import { Model } from "../model";
 
-export abstract class PromotionalCode {
+export abstract class PromotionalCode extends Model {
     id: string;
 
     discriminator: string;

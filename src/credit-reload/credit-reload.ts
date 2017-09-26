@@ -1,7 +1,8 @@
 import { User } from "../user";
 import { CreditReloadForm } from "./credit-reload-form";
+import { Model } from "../model";
 
-export abstract class CreditReload {
+export abstract class CreditReload extends Model {
     id: string;
 
     discriminator: string;

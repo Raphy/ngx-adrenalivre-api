@@ -2,8 +2,9 @@ import { Author } from "../author";
 import { File } from "../file";
 import { Collection } from "../collection";
 import { VolumeForm } from "./volume-form";
+import { Model } from "../model";
 
-export class Volume {
+export class Volume extends Model {
     public id: string;
 
     public name?: string;

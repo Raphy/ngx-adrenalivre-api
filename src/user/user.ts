@@ -3,8 +3,9 @@ import { Volume } from "../volume/volume";
 import { CreditReload } from "../credit-reload/credit-reload";
 import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
 import { UserForm } from "./user-form";
+import { Model } from "../model";
 
-export class User {
+export class User extends Model {
     id: string;
 
     emailAddress: string;

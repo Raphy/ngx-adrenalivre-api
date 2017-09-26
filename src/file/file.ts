@@ -3,8 +3,9 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 
 import { User } from '../user';
 import { FileForm } from "./file-form";
+import { Model } from "../model";
 
-export class File {
+export class File extends Model {
     id: string;
 
     mimeType: string;
