@@ -1,7 +1,7 @@
 import { Author } from "../author";
 import { File } from "../file";
 import { Genre } from "../genre";
-import { Volume } from "../volume";
+import { Volume } from '../volume/volume';
 
 export class Collection {
     id: string;
