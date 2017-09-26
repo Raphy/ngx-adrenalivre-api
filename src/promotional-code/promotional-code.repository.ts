@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 
 import { AuthHttp } from '../auth';
 import { Configuration } from '../configuration';
@@ -9,84 +8,23 @@ import { PromotionalCode } from './promotional-code';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
 import { PromotionalCodeFactory } from "./promotional-code-factory";
-import { PromotionalCodeForm } from "./promotional-code-form";
 
 @Injectable()
-export class PromotionalCodeRepository implements Repository<PromotionalCode> {
-    constructor(private http: AuthHttp, private configuration: Configuration) {
+export class PromotionalCodeRepository extends Repository<PromotionalCode> {
+    constructor(http: AuthHttp, configuration: Configuration) {
+        super(http, configuration);
     }
 
-    public list(params: object = {}): Observable<PromotionalCode[] | Error> {
-        return this.http.get(this.configuration.baseUrl + '/promotionalCodes', {params: params})
-            .map((response: Response) => response.json())
-            .map((data: object[]) => data.map((promotionalCodeObject: any) => PromotionalCodeFactory.create(promotionalCodeObject.discriminator, promotionalCodeObject)))
-            .catch((errorCaught: any) => {
-                const error = ErrorFactory.create(errorCaught);
-                if (error) {
-                    return Observable.of(error);
-                }
-
-                throw errorCaught;
-            });
+    protected getEndpoint(item: PromotionalCode | null = null): string {
+        return 'promotionalCodes';
     }
 
-    public retrieve(id: string): Observable<PromotionalCode | Error> {
-        return this.http.get(this.configuration.baseUrl + '/promotionalCodes/' + id)
-            .map((response: Response) => response.json())
-            .map((data: any) => PromotionalCodeFactory.create(data.discriminator, data))
-            .catch((errorCaught: any) => {
-                const error = ErrorFactory.create(errorCaught);
-                if (error) {
-                    return Observable.of(error);
-                }
-
-                throw errorCaught;
-            });
-    }
-
-    public save(promotionalCodeForm: PromotionalCodeForm, promotionalCode: PromotionalCode = null): Observable<PromotionalCode | Error> {
-        if (promotionalCode && promotionalCode.id) {
-            return this.http.patch(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id, promotionalCodeForm)
-                .map((response: Response) => response.json())
-                .map((data: object) => promotionalCode.hydrate(data))
-                .catch((errorCaught: any) => {
-                    const error = ErrorFactory.create(errorCaught);
-                    if (error) {
-                        return Observable.of(error);
-                    }
-
-                    throw errorCaught;
-                });
-        }
-
-        return this.http.post(this.configuration.baseUrl + '/promotionalCodes', promotionalCodeForm)
-            .map((response: Response) => response.json())
-            .map((data: object) => promotionalCode.hydrate(data))
-            .catch((errorCaught: any) => {
-                const error = ErrorFactory.create(errorCaught);
-                if (error) {
-                    return Observable.of(error);
-                }
-
-                throw errorCaught;
-            });
-    }
-
-    public remove(promotionalCode: PromotionalCode): Observable<void | Error> {
-        return this.http.delete(this.configuration.baseUrl + '/promotionalCodes/' + promotionalCode.id)
-            .map((response: Response) => null)
-            .catch((errorCaught: any) => {
-                const error = ErrorFactory.create(errorCaught);
-                if (error) {
-                    return Observable.of(error);
-                }
-
-                throw errorCaught;
-            });
+    protected createItem(itemData: any = {}): PromotionalCode {
+        return PromotionalCodeFactory.create(itemData.discriminator, itemData);
     }
 
     public redeem(code: string): Observable<void | Error> {
-        return this.http.post(this.configuration.baseUrl + '/creditOffers/' + code + '/redeem', null)
+        return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + code + '/redeem', null)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
