@@ -1,5 +1,6 @@
 import { File } from "../file";
 import { Volume } from "../volume";
+import { AuthorForm } from "./author-form";
 
 export class Author {
     id: string;
@@ -42,6 +43,13 @@ export class Author {
         }
 
         return this;
+    }
+
+    toForm(): AuthorForm {
+        let form = new AuthorForm();
+        form.populate(this);
+
+        return form;
     }
 
     get fullName(): string | null {

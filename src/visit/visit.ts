@@ -1,4 +1,5 @@
 import { User } from '../user';
+import { VisitForm } from "./visit-form";
 
 export abstract class Visit {
 
@@ -28,5 +29,12 @@ export abstract class Visit {
         }
 
         return this;
+    }
+
+    toForm(): VisitForm {
+        let form = new VisitForm();
+        form.populate(this);
+
+        return form;
     }
 }

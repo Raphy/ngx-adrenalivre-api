@@ -1,10 +1,14 @@
 import { User } from '../user';
+import { SessionForm } from "./session-form";
 
-export class Session {
-    public id: string;
-    public mode: string;
-    public expiresAt: Date;
-    public user: User;
+export abstract class Session {
+    id: string;
+
+    mode: string;
+
+    expiresAt: Date;
+
+    user: User;
 
     constructor(data: any = {}) {
         this.hydrate(data);
@@ -24,6 +28,13 @@ export class Session {
         }
 
         return this;
+    }
+
+    toForm(): SessionForm {
+        let form = new SessionForm();
+        form.populate(this);
+
+        return form;
     }
 
     isExpired(): boolean {

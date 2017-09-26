@@ -1,4 +1,5 @@
 import { File } from "../file";
+import { GenreForm } from "./genre-form";
 
 export class Genre {
     id: string;
@@ -23,5 +24,12 @@ export class Genre {
         }
 
         return this;
+    }
+
+    toForm(): GenreForm {
+        let form = new GenreForm();
+        form.populate(this);
+
+        return form;
     }
 }

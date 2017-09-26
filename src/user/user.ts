@@ -2,6 +2,7 @@ import { File } from "../file";
 import { Volume } from "../volume/volume";
 import { CreditReload } from "../credit-reload/credit-reload";
 import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
+import { UserForm } from "./user-form";
 
 export class User {
     id: string;
@@ -56,6 +57,13 @@ export class User {
         }
 
         return this;
+    }
+
+    toForm(): UserForm {
+        let form = new UserForm();
+        form.populate(this);
+
+        return form;
     }
 
     get fullName(): string {

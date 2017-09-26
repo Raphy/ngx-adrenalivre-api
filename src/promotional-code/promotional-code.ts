@@ -1,3 +1,5 @@
+import { PromotionalCodeForm } from "./promotional-code-form";
+
 export abstract class PromotionalCode {
     id: string;
 
@@ -29,5 +31,12 @@ export abstract class PromotionalCode {
         this.startAt = new Date(data.startAt);
 
         return this;
+    }
+
+    toForm(): PromotionalCodeForm {
+        let form = new PromotionalCodeForm();
+        form.populate(this);
+
+        return form;
     }
 }

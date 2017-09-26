@@ -1,4 +1,5 @@
 import { File } from '../file';
+import { SlideForm } from "./slide-form";
 
 export class Slide {
     id: string;
@@ -34,5 +35,12 @@ export class Slide {
         }
 
         return this;
+    }
+
+    toForm(): SlideForm {
+        let form = new SlideForm();
+        form.populate(this);
+
+        return form;
     }
 }

@@ -73,7 +73,7 @@ export class AuthService {
             });
     }
 
-    signIn(sessionForm: SessionForm): Observable<boolean> {
+    signIn(session: Session): Observable<boolean> {
         return this
             .isSignedIn()
             .flatMap((isSignedIn) => {
@@ -82,7 +82,7 @@ export class AuthService {
                 }
 
                 return this.sessionRepository
-                    .save(sessionForm)
+                    .save(session)
                     .map((session: Session | Error) => {
                         if (session instanceof Session) {
                             this.setSession(session);

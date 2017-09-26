@@ -1,4 +1,5 @@
 import { User } from "../user";
+import { CreditReloadForm } from "./credit-reload-form";
 
 export abstract class CreditReload {
     id: string;
@@ -29,5 +30,12 @@ export abstract class CreditReload {
         }
 
         return this;
+    }
+
+    toForm(): CreditReloadForm {
+        let form = new CreditReloadForm();
+        form.populate(this);
+
+        return form;
     }
 }

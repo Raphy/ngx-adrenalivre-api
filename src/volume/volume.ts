@@ -1,6 +1,7 @@
 import { Author } from "../author";
 import { File } from "../file";
 import { Collection } from "../collection";
+import { VolumeForm } from "./volume-form";
 
 export class Volume {
     public id: string;
@@ -83,5 +84,12 @@ export class Volume {
         }
 
         return this;
+    }
+
+    toForm(): VolumeForm {
+        let form = new VolumeForm();
+        form.populate(this);
+
+        return form;
     }
 }

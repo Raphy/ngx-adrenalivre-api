@@ -43,9 +43,9 @@ export abstract class Repository<T>
             });
     }
 
-    save(itemForm: Form<T>, item: T = null): Observable<T | Error> {
+    save(item: T): Observable<T | Error> {
         if (item && item.id) {
-            return this.http.patch(this.configuration.baseUrl + '/' + this.getEndpoint(item) + '/' + item.id, itemForm)
+            return this.http.patch(this.configuration.baseUrl + '/' + this.getEndpoint(item) + '/' + item.id, item.toForm())
                 .map((response: Response) => response.json())
                 .map((data: object) => item.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -58,7 +58,7 @@ export abstract class Repository<T>
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint(item), itemForm)
+        return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint(item), item.toForm())
             .map((response: Response) => response.json())
             .map((data: object) => (item ? item : this.createItem()).hydrate(data))
             .catch((errorCaught: any) => {

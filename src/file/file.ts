@@ -2,6 +2,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 
 
 import { User } from '../user';
+import { FileForm } from "./file-form";
 
 export class File {
     id: string;
@@ -41,5 +42,12 @@ export class File {
         }
 
         return this;
+    }
+
+    toForm(): FileForm {
+        let form = new FileForm();
+        form.populate(this);
+
+        return form;
     }
 }

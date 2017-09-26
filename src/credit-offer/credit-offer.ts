@@ -1,3 +1,5 @@
+import { CreditOfferForm } from "./credit-offer-form";
+
 export class CreditOffer {
     id: string;
 
@@ -17,5 +19,12 @@ export class CreditOffer {
         Object.assign(this, data);
 
         return this;
+    }
+
+    toForm(): CreditOfferForm {
+        let form = new CreditOfferForm();
+        form.populate(this);
+
+        return form;
     }
 }

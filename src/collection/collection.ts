@@ -2,6 +2,7 @@ import { Author } from "../author";
 import { File } from "../file";
 import { Genre } from "../genre";
 import { Volume } from '../volume/volume';
+import { CollectionForm } from "./collection-form";
 
 export class Collection {
     id: string;
@@ -72,5 +73,12 @@ export class Collection {
         }
 
         return this;
+    }
+
+    toForm(): CollectionForm {
+        let form = new CollectionForm();
+        form.populate(this);
+
+        return form;
     }
 }
