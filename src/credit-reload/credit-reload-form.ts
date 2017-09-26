@@ -26,7 +26,7 @@ export class CreditReloadForm extends Form<CreditReload> {
             this.price = item.price;
             this.currency = item.currency;
         } else if (item instanceof PromotionalCodeCreditReload) {
-            this.creditsPromotionalCode = item.creditsPromotionalCode;
+            this.creditsPromotionalCode = item.creditsPromotionalCode.id;
         }
     }
 }
