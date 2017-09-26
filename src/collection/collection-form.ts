@@ -18,20 +18,20 @@ export class CollectionForm extends Form<Collection> {
 
     coverFile: string;
 
-    populate(collection: Collection) {
-        this.name = collection.name;
-        if (collection.genre) {
-            this.genre = collection.genre.id;
+    populate(item: Collection) {
+        this.name = item.name;
+        if (item.genre) {
+            this.genre = item.genre.id;
         }
-        if (collection.backgroundFile) {
-            this.backgroundFile = collection.backgroundFile.id;
+        if (item.backgroundFile) {
+            this.backgroundFile = item.backgroundFile.id;
         }
-        this.synopsis = collection.synopsis;
-        this.duration = collection.duration;
-        this.pegi = collection.pegi;
-        this.singleVolume = collection.singleVolume;
-        if (collection.coverFile) {
-            this.coverFile = collection.coverFile.id;
+        this.synopsis = item.synopsis;
+        this.duration = item.duration;
+        this.pegi = item.pegi;
+        this.singleVolume = item.singleVolume;
+        if (item.coverFile) {
+            this.coverFile = item.coverFile.id;
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
+import { Form } from './form';
 import { Error } from './error';
 
 export interface Repository<T>
@@ -8,7 +9,7 @@ export interface Repository<T>
 
     retrieve(id: string): Observable<T | Error>;
 
-    save(item: T): Observable<T | Error>;
+    save(itemForm: Form<T>, item: T): Observable<T | Error>;
 
     remove(item: T): Observable<void | Error>;
 }

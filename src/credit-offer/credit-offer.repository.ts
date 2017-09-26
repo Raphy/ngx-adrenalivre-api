@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { CreditOffer } from './credit-offer';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { CreditOfferForm } from "./credit-offer-form";
 
 @Injectable()
 export class CreditOfferRepository implements Repository<CreditOffer> {
@@ -42,9 +43,9 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
             });
     }
 
-    public save(creditOffer: CreditOffer): Observable<CreditOffer | Error> {
-        if (creditOffer.id) {
-            return this.http.patch(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id, creditOffer)
+    public save(creditOfferForm: CreditOfferForm, creditOffer: CreditOffer = null): Observable<CreditOffer | Error> {
+        if (creditOffer && creditOffer.id) {
+            return this.http.patch(this.configuration.baseUrl + '/creditOffers/' + creditOffer.id, creditOfferForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => creditOffer.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class CreditOfferRepository implements Repository<CreditOffer> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/creditOffers', creditOffer)
+        return this.http.post(this.configuration.baseUrl + '/creditOffers', creditOfferForm)
             .map((response: Response) => response.json())
             .map((data: object) => creditOffer.hydrate(data))
             .catch((errorCaught: any) => {

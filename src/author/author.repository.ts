@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Author } from './author';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { AuthorForm } from "./author-form";
 
 @Injectable()
 export class AuthorRepository implements Repository<Author> {
@@ -42,9 +43,9 @@ export class AuthorRepository implements Repository<Author> {
             });
     }
 
-    save(author: Author): Observable<Author | Error> {
-        if (author.id) {
-            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, author)
+    save(authorForm: AuthorForm, author: Author = null): Observable<Author | Error> {
+        if (author && author.id) {
+            return this.http.patch(this.configuration.baseUrl + '/authors/' + author.id, authorForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => author.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class AuthorRepository implements Repository<Author> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/authors', author)
+        return this.http.post(this.configuration.baseUrl + '/authors', authorForm)
             .map((response: Response) => response.json())
             .map((data: object) => author.hydrate(data))
             .catch((errorCaught: any) => {

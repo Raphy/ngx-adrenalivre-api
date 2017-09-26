@@ -18,7 +18,7 @@ export class Author {
 
     websiteUrl?: string;
 
-    recommendationRate?: string;
+    recommendationRate?: number;
 
     volumes: Volume[];
 

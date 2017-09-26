@@ -8,6 +8,7 @@ import { Configuration } from '../configuration';
 import { Volume } from '../volume/volume';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { VolumeForm } from "./volume-form";
 
 @Injectable()
 export class VolumeRepository implements Repository<Volume> {
@@ -42,9 +43,9 @@ export class VolumeRepository implements Repository<Volume> {
             });
     }
 
-    public save(volume: Volume): Observable<Volume | Error> {
-        if (volume.id) {
-            return this.http.patch(this.configuration.baseUrl + '/volumes/' + volume.id, volume)
+    public save(volumeForm: VolumeForm, volume: Volume = null): Observable<Volume | Error> {
+        if (volume && volume.id) {
+            return this.http.patch(this.configuration.baseUrl + '/volumes/' + volume.id, volumeForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => volume.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -57,7 +58,7 @@ export class VolumeRepository implements Repository<Volume> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/volumes', volume)
+        return this.http.post(this.configuration.baseUrl + '/volumes', volumeForm)
             .map((response: Response) => response.json())
             .map((data: object) => volume.hydrate(data))
             .catch((errorCaught: any) => {

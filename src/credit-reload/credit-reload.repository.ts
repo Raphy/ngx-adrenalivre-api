@@ -9,6 +9,7 @@ import { CreditReload } from './credit-reload';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
 import { CreditReloadFactory } from "./credit-reload-factory";
+import { CreditReloadForm } from "./credit-reload-form";
 
 @Injectable()
 export class CreditReloadRepository implements Repository<CreditReload> {
@@ -43,9 +44,9 @@ export class CreditReloadRepository implements Repository<CreditReload> {
             });
     }
 
-    public save(creditReload: CreditReload): Observable<CreditReload | Error> {
-        if (creditReload.id) {
-            return this.http.patch(this.configuration.baseUrl + '/creditReloads/' + creditReload.id, creditReload)
+    public save(creditReloadForm: CreditReloadForm, creditReload: CreditReload = null): Observable<CreditReload | Error> {
+        if (creditReload && creditReload.id) {
+            return this.http.patch(this.configuration.baseUrl + '/creditReloads/' + creditReload.id, creditReloadForm)
                 .map((response: Response) => response.json())
                 .map((data: object) => creditReload.hydrate(data))
                 .catch((errorCaught: any) => {
@@ -58,7 +59,7 @@ export class CreditReloadRepository implements Repository<CreditReload> {
                 });
         }
 
-        return this.http.post(this.configuration.baseUrl + '/creditReloads', creditReload)
+        return this.http.post(this.configuration.baseUrl + '/creditReloads', creditReloadForm)
             .map((response: Response) => response.json())
             .map((data: object) => creditReload.hydrate(data))
             .catch((errorCaught: any) => {
