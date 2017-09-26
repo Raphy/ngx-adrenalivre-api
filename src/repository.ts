@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 
 import { Error } from './error';
 import { AuthHttp } from './auth';
