@@ -3,8 +3,6 @@ import { GenreForm } from "./genre-form";
 import { Model } from "../model";
 
 export class Genre extends Model {
-    id: string;
-
     name: string;
 
     illustrationFile: File;

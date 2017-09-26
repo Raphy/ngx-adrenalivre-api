@@ -2,8 +2,6 @@ import { CreditOfferForm } from "./credit-offer-form";
 import { Model } from "../model";
 
 export class CreditOffer extends Model {
-    id: string;
-
     name: string;
 
     credits: number;

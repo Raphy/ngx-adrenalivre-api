@@ -3,14 +3,11 @@ import { VisitForm } from "./visit-form";
 import { Model } from "../model";
 
 export abstract class Visit extends Model {
+    discriminator: string;
 
-    public id: string;
+    user: User;
 
-    public discriminator: string;
-
-    public user: User;
-
-    public visitedAt: Date;
+    visitedAt: Date;
 
     constructor(data: any = {}) {
         super();

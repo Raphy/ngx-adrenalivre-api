@@ -3,8 +3,6 @@ import { CreditReloadForm } from "./credit-reload-form";
 import { Model } from "../model";
 
 export abstract class CreditReload extends Model {
-    id: string;
-
     discriminator: string;
 
     credits: number;

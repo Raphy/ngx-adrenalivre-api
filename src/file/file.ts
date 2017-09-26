@@ -6,8 +6,6 @@ import { FileForm } from "./file-form";
 import { Model } from "../model";
 
 export class File extends Model {
-    id: string;
-
     mimeType: string;
 
     size: number;

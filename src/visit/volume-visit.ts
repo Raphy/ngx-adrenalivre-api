@@ -2,10 +2,9 @@ import { Volume } from '../volume';
 import { Visit } from "./visit";
 
 export class VolumeVisit extends Visit {
+    discriminator: string = 'volume';
 
-    public discriminator: string = 'volume';
-
-    public volume: Volume;
+    volume: Volume;
 
     hydrate(data: any) {
         if (data.volume) {

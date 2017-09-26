@@ -6,8 +6,6 @@ import { UserForm } from "./user-form";
 import { Model } from "../model";
 
 export class User extends Model {
-    id: string;
-
     emailAddress: string;
 
     plainPassword: string;

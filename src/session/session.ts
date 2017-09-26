@@ -3,8 +3,6 @@ import { SessionForm } from "./session-form";
 import { Model } from "../model";
 
 export abstract class Session extends Model {
-    id: string;
-
     mode: string;
 
     expiresAt: Date;

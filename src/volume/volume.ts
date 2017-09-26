@@ -5,33 +5,31 @@ import { VolumeForm } from "./volume-form";
 import { Model } from "../model";
 
 export class Volume extends Model {
-    public id: string;
+    name?: string;
 
-    public name?: string;
+    coverFile: File;
 
-    public coverFile: File;
+    backgroundFile: File;
 
-    public backgroundFile: File;
+    assetBundleFile: File;
 
-    public assetBundleFile: File;
+    storyFile: File;
 
-    public storyFile: File;
+    collection: Collection;
 
-    public collection: Collection;
+    synopsis?: string;
 
-    public synopsis?: string;
+    duration?: number;
 
-    public duration?: number;
+    creditsCost: number;
 
-    public creditsCost: number;
+    recommendationRate: string;
 
-    public recommendationRate: string;
+    createdAt: string;
 
-    public createdAt: string;
+    updatedAt: string;
 
-    public updatedAt: string;
-
-    public authors: Author[];
+    authors: Author[];
 
     constructor(data: any = {}) {
         super();

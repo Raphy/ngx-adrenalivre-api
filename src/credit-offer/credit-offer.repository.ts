@@ -22,7 +22,7 @@ export class CreditOfferRepository extends Repository<CreditOffer> {
         return new CreditOffer(itemData);
     }
 
-    public purchase(item: CreditOffer, stripeToken: string): Observable<void | Error> {
+    purchase(item: CreditOffer, stripeToken: string): Observable<void | Error> {
         return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + item.id + '/purchase', {stripeToken: stripeToken})
             .map((response: Response) => null)
             .catch((errorCaught: any) => {

@@ -2,10 +2,9 @@ import { Author } from '../author';
 import { Visit } from "./visit";
 
 export class AuthorVisit extends Visit {
+    discriminator: string = 'author';
 
-    public discriminator: string = 'author';
-
-    public author: Author;
+    author: Author;
 
     hydrate(data: any) {
         if (data.author) {

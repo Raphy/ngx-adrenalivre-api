@@ -2,10 +2,9 @@ import { Genre } from '../genre';
 import { Visit } from "./visit";
 
 export class GenreVisit extends Visit {
+    discriminator: string = 'genre';
 
-    public discriminator: string = 'genre';
-
-    public genre: Genre;
+    genre: Genre;
 
     hydrate(data: any) {
         if (data.genre) {

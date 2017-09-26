@@ -2,10 +2,9 @@ import { Collection } from '../collection';
 import { Visit } from "./visit";
 
 export class CollectionVisit extends Visit {
+    discriminator: string = 'collection';
 
-    public discriminator: string = 'collection';
-
-    public collection: Collection;
+    collection: Collection;
 
     hydrate(data: any) {
         if (data.collection) {

@@ -6,7 +6,7 @@ import { PaidCreditReload } from "./paid-credit-reload";
 
 @Injectable()
 export class CreditReloadFactory {
-    public static create(discriminator: string, data: any = {}): CreditReload
+    static create(discriminator: string, data: any = {}): CreditReload
     {
         switch (discriminator) {
             case 'free':

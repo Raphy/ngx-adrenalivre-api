@@ -22,7 +22,7 @@ export class VolumeRepository extends Repository<Volume> {
         return new Volume(itemData);
     }
 
-    public buy(item: Volume): Observable<void | Error> {
+    buy(item: Volume): Observable<void | Error> {
         return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + item.id + '/buy', null)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {

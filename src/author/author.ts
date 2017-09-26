@@ -4,8 +4,6 @@ import { AuthorForm } from "./author-form";
 import { Model } from "../model";
 
 export class Author extends Model{
-    id: string;
-
     firstName: string;
 
     lastName: string;

@@ -7,6 +7,8 @@ export class PromotionalCodeCreditReload extends CreditReload {
     creditsPromotionalCode: CreditsPromotionalCode;
 
     hydrate(data: any) {
+        super.hydrate(data);
+
         if (data.creditsPromotionalCode) {
             if (this.creditsPromotionalCode instanceof CreditsPromotionalCode) {
                 this.creditsPromotionalCode.hydrate(data.creditsPromotionalCode);

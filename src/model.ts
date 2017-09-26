@@ -1,6 +1,8 @@
 import { Form } from "./form";
 
 export abstract class Model {
+    id: string;
+
     constructor(data: any = {}) {
         this.hydrate(data);
     }

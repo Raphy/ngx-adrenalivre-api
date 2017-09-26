@@ -3,8 +3,6 @@ import { SlideForm } from "./slide-form";
 import { Model } from "../model";
 
 export class Slide extends Model {
-    id: string;
-
     title: string;
 
     description: string;
