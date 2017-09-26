@@ -34,6 +34,7 @@ export class Volume extends Model {
     public authors: Author[];
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

@@ -33,6 +33,7 @@ export class User extends Model {
     creditReloads: CreditReload[];
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

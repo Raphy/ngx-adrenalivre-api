@@ -25,6 +25,7 @@ export class File extends Model {
     attach: string;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

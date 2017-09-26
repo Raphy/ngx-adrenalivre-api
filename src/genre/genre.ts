@@ -10,6 +10,7 @@ export class Genre extends Model {
     illustrationFile: File;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

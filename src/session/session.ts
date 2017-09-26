@@ -12,6 +12,7 @@ export abstract class Session extends Model {
     user: User;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

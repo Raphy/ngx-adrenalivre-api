@@ -25,6 +25,7 @@ export class Author extends Model{
     volumes: Volume[];
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

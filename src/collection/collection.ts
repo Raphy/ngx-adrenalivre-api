@@ -35,6 +35,7 @@ export class Collection extends Model {
     coverFile: File;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

@@ -14,6 +14,7 @@ export abstract class CreditReload extends Model {
     user: User;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 

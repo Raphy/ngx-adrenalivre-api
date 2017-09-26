@@ -18,6 +18,7 @@ export class Slide extends Model {
     updatedAt: Date;
 
     constructor(data: any = {}) {
+        super();
         this.hydrate(data);
     }
 
