@@ -26,8 +26,6 @@ export class FileRepository extends Repository<File> {
         const formData: FormData = new FormData();
         formData.append('contents', file.contents.file, file.contents.name);
         const headers = new Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
         return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {headers: headers})
             .map((response: Response) => null);
     }

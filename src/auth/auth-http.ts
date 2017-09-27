@@ -15,12 +15,6 @@ export class AuthHttp extends Http {
                 headers.append('Authorization', 'Bearer ' + sessionId);
             }
         }
-        if (headers.has('Accept') === false) {
-            headers.append('Accept', 'application/json');
-        }
-        if (headers.has('Content-Type') === false) {
-            headers.append('Content-Type', 'application/json');
-        }
     }
 
     request(url: Request, options?: RequestOptionsArgs): Observable<Response> {
