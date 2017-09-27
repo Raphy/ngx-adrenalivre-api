@@ -9,8 +9,6 @@ import { PaidCreditReload } from "./paid-credit-reload";
 export class CreditReloadFactory {
     static create(discriminator: string, data: any = {}): CreditReload
     {
-        console.log('CreditRelaodFactory Create');
-
         switch (discriminator) {
             case 'free':
                 return new FreeCreditReload(data);
