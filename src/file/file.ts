@@ -4,6 +4,8 @@ import { User } from '../user';
 import { Model } from "../model";
 
 export class File extends Model {
+    name: string;
+
     mimeType: string;
 
     size: number;
