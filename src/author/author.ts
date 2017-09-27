@@ -19,10 +19,10 @@ export class Author extends Model{
 
     recommendationRate?: number;
 
-    volumes: Volume[];
+    volumes: Volume[] = [];
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

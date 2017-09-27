@@ -9,7 +9,7 @@ export abstract class Visit extends Model {
     visitedAt: Date;
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

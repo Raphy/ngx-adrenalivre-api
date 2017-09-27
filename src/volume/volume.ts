@@ -28,10 +28,10 @@ export class Volume extends Model {
 
     updatedAt: string;
 
-    authors: Author[];
+    authors: Author[] = [];
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

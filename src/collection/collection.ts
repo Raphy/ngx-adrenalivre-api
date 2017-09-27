@@ -25,14 +25,14 @@ export class Collection extends Model {
 
     updatedAt: string;
 
-    volumes: Volume[];
+    volumes: Volume[] = [];
 
-    authors: Author[];
+    authors: Author[] = [];
 
     coverFile: File;
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

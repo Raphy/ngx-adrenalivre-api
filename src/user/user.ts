@@ -25,12 +25,12 @@ export class User extends Model {
 
     profilePhotoFile: File;
 
-    volumes: Volume[];
+    volumes: Volume[] = [];
 
-    creditReloads: CreditReload[];
+    creditReloads: CreditReload[] = [];
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

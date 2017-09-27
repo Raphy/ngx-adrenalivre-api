@@ -10,7 +10,7 @@ export class CreditOffer extends Model {
     currency: string;
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
     }
 

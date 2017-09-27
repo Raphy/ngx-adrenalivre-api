@@ -9,7 +9,7 @@ export class Session extends Model {
     user: User;
 
     constructor(data: any = {}) {
-        super();
+        super(data);
         this.hydrate(data);
 
     }
