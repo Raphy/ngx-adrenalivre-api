@@ -1,8 +1,6 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
 
-
 import { User } from '../user';
-import { FileForm } from "./file-form";
 import { Model } from "../model";
 
 export class File extends Model {
@@ -42,12 +40,5 @@ export class File extends Model {
         }
 
         return this;
-    }
-
-    toForm(): FileForm {
-        let form = new FileForm();
-        form.populate(this);
-
-        return form;
     }
 }

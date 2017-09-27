@@ -19,4 +19,14 @@ export class VolumePromotionalCode extends PromotionalCode {
 
         return this;
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.volume) {
+            form.volume = this.volume.id;
+        }
+
+        return form;
+    }
 }

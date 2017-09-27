@@ -1,8 +1,21 @@
 import { Session } from './session';
 
 export class CredentialsSession extends Session {
-    public mode: string = 'credentials';
-    public emailAddress: string;
-    public plainPassword: string;
-    public remembered: boolean;
+    mode: string = 'credentials';
+
+    emailAddress: string;
+
+    plainPassword: string;
+
+    remembered: boolean;
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.emailAddress = this.emailAddress;
+        form.plainPassword = this.plainPassword;
+        form.remembered = this.remembered;
+
+        return form;
+    }
 }

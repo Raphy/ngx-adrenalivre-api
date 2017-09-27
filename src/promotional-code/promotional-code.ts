@@ -1,4 +1,3 @@
-import { PromotionalCodeForm } from "./promotional-code-form";
 import { Model } from "../model";
 
 export abstract class PromotionalCode extends Model {
@@ -33,9 +32,15 @@ export abstract class PromotionalCode extends Model {
         return this;
     }
 
-    toForm(): PromotionalCodeForm {
-        let form = new PromotionalCodeForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.discriminator = this.discriminator;
+        form.code = this.code;
+        form.usages = this.usages;
+        form.active = this.active;
+        form.startAt = this.startAt.toISOString();
+        form.endAt = this.endAt.toISOString();
 
         return form;
     }

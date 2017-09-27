@@ -1,5 +1,4 @@
 import { User } from "../user";
-import { CreditReloadForm } from "./credit-reload-form";
 import { Model } from "../model";
 
 export abstract class CreditReload extends Model {
@@ -32,9 +31,14 @@ export abstract class CreditReload extends Model {
         return this;
     }
 
-    toForm(): CreditReloadForm {
-        let form = new CreditReloadForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.discriminator = this.discriminator;
+        form.credits = this.credits;
+        if (this.user) {
+            form.user = this.user.id;
+        }
 
         return form;
     }

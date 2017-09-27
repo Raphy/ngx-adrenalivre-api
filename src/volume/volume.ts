@@ -1,7 +1,6 @@
 import { Author } from "../author";
 import { File } from "../file";
 import { Collection } from "../collection";
-import { VolumeForm } from "./volume-form";
 import { Model } from "../model";
 
 export class Volume extends Model {
@@ -86,9 +85,29 @@ export class Volume extends Model {
         return this;
     }
 
-    toForm(): VolumeForm {
-        let form = new VolumeForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.name = this.name;
+        if (this.coverFile) {
+            form.coverFile = this.coverFile.id;
+        }
+        if (this.collection) {
+            form.collection = this.collection.id;
+        }
+        if (this.backgroundFile) {
+            form.backgroundFile = this.backgroundFile.id;
+        }
+        if (this.assetBundleFile) {
+            form.assetBundleFile = this.assetBundleFile.id;
+        }
+        if (this.storyFile) {
+            form.storyFile = this.storyFile.id;
+        }
+        form.synopsis = this.synopsis;
+        form.duration = this.duration;
+        form.creditsCost = this.creditsCost;
+        form.authors = this.authors.map((author) => author.id);
 
         return form;
     }

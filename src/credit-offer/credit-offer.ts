@@ -1,4 +1,3 @@
-import { CreditOfferForm } from "./credit-offer-form";
 import { Model } from "../model";
 
 export class CreditOffer extends Model {
@@ -15,9 +14,13 @@ export class CreditOffer extends Model {
         this.hydrate(data);
     }
 
-    toForm(): CreditOfferForm {
-        let form = new CreditOfferForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.name = this.name;
+        form.credits = this.credits;
+        form.price = this.price;
+        form.currency = this.currency;
 
         return form;
     }

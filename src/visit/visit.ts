@@ -1,5 +1,4 @@
 import { User } from '../user';
-import { VisitForm } from "./visit-form";
 import { Model } from "../model";
 
 export abstract class Visit extends Model {
@@ -30,9 +29,10 @@ export abstract class Visit extends Model {
         return this;
     }
 
-    toForm(): VisitForm {
-        let form = new VisitForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.discriminator = this.discriminator;
 
         return form;
     }

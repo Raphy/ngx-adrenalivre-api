@@ -1,5 +1,3 @@
-import { Form } from "./form";
-
 export abstract class Model {
     id: string;
 
@@ -13,5 +11,13 @@ export abstract class Model {
         return this;
     }
 
-    abstract toForm(): Form<this>;
+    toForm(): object {
+        let form: any = {};
+
+        if (this.id) {
+            form.id = this.id;
+        }
+
+        return form;
+    };
 }

@@ -4,5 +4,4 @@ export * from './genre-visit';
 export * from './visit.repository';
 export * from './visit';
 export * from './visit-factory';
-export * from './visit-form';
 export * from './volume-visit';

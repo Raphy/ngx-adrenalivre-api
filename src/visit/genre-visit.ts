@@ -17,4 +17,14 @@ export class GenreVisit extends Visit {
 
         return super.hydrate(data);
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.genre) {
+            form.genre = this.genre.id;
+        }
+
+        return form;
+    }
 }

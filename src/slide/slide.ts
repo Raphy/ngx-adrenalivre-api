@@ -1,5 +1,4 @@
 import { File } from '../file';
-import { SlideForm } from "./slide-form";
 import { Model } from "../model";
 
 export class Slide extends Model {
@@ -37,9 +36,15 @@ export class Slide extends Model {
         return this;
     }
 
-    toForm(): SlideForm {
-        let form = new SlideForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.title = this.title;
+        form.description = this.description;
+        form.position = this.position;
+        if (this.backgroundFile) {
+            form.backgroundFile = this.backgroundFile.id;
+        }
 
         return form;
     }

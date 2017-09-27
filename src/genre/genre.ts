@@ -1,5 +1,4 @@
 import { File } from "../file";
-import { GenreForm } from "./genre-form";
 import { Model } from "../model";
 
 export class Genre extends Model {
@@ -26,9 +25,13 @@ export class Genre extends Model {
         return this;
     }
 
-    toForm(): GenreForm {
-        let form = new GenreForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.name = this.name;
+        if (this.illustrationFile) {
+            form.illustrationFile = this.illustrationFile.id;
+        }
 
         return form;
     }

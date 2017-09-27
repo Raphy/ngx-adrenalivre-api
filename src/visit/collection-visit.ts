@@ -17,4 +17,14 @@ export class CollectionVisit extends Visit {
 
         return super.hydrate(data);
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.collection) {
+            form.collection = this.collection.id;
+        }
+
+        return form;
+    }
 }

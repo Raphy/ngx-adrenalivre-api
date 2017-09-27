@@ -1,5 +1,4 @@
 import { User } from '../user';
-import { SessionForm } from "./session-form";
 import { Model } from "../model";
 
 export class Session extends Model {
@@ -12,6 +11,7 @@ export class Session extends Model {
     constructor(data: any = {}) {
         super();
         this.hydrate(data);
+
     }
 
     hydrate(data: any) {
@@ -30,9 +30,10 @@ export class Session extends Model {
         return this;
     }
 
-    toForm(): SessionForm {
-        let form = new SessionForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.mode = this.mode;
 
         return form;
     }

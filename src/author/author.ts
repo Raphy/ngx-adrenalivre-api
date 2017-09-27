@@ -1,6 +1,5 @@
 import { File } from "../file";
 import { Volume } from "../volume";
-import { AuthorForm } from "./author-form";
 import { Model } from "../model";
 
 export class Author extends Model{
@@ -45,11 +44,20 @@ export class Author extends Model{
         return this;
     }
 
-    toForm(): AuthorForm {
-        let form = new AuthorForm();
-        form.populate(this);
+    toForm(): object {
+       let form: any = super.toForm();
 
-        return form;
+        form.firstName = this.firstName;
+        form.lastName = this.lastName;
+        form.description = this.description;
+        if (this.profileImageFile) {
+            form.profileImageFile = this.profileImageFile.id;
+        }
+        form.facebookUrl = this.facebookUrl;
+        form.twitterUrl = this.twitterUrl;
+        form.websiteUrl = this.websiteUrl;
+
+       return form;
     }
 
     get fullName(): string | null {

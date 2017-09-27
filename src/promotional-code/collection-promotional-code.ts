@@ -19,4 +19,14 @@ export class CollectionPromotionalCode extends PromotionalCode {
 
         return this;
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.collection) {
+            form.collection = this.collection.id;
+        }
+
+        return form;
+    }
 }

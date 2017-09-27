@@ -19,4 +19,14 @@ export class PromotionalCodeCreditReload extends CreditReload {
 
         return super.hydrate(data);
     }
+
+    toForm(): Object {
+        let form: any = super.toForm();
+
+        if (this.creditsPromotionalCode) {
+            form.creditsPromotionalCode = this.creditsPromotionalCode.id;
+        }
+
+        return form;
+    }
 }

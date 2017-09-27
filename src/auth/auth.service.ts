@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { Error } from '../error';
-import { SessionRepository, Session, SessionForm } from '../session';
+import { SessionRepository, Session } from '../session';
 import { User, UserRepository } from "../user";
 
 @Injectable()

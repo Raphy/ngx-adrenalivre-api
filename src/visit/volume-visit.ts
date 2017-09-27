@@ -17,4 +17,14 @@ export class VolumeVisit extends Visit {
 
         return super.hydrate(data);
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.volume) {
+            form.volume = this.volume.id;
+        }
+
+        return form;
+    }
 }

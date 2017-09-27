@@ -2,7 +2,6 @@ import { File } from "../file";
 import { Volume } from "../volume/volume";
 import { CreditReload } from "../credit-reload/credit-reload";
 import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
-import { UserForm } from "./user-form";
 import { Model } from "../model";
 
 export class User extends Model {
@@ -59,9 +58,15 @@ export class User extends Model {
         return this;
     }
 
-    toForm(): UserForm {
-        let form = new UserForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.emailAddress = this.emailAddress;
+        form.plainPassword = this.plainPassword;
+        form.firstName = this.firstName;
+        if (this.profilePhotoFile) {
+            form.profilePhotoFile = this.profilePhotoFile.id;
+        }
 
         return form;
     }

@@ -2,7 +2,6 @@ import { Author } from "../author";
 import { File } from "../file";
 import { Genre } from "../genre";
 import { Volume } from '../volume/volume';
-import { CollectionForm } from "./collection-form";
 import { Model } from "../model";
 
 export class Collection extends Model {
@@ -75,9 +74,23 @@ export class Collection extends Model {
         return this;
     }
 
-    toForm(): CollectionForm {
-        let form = new CollectionForm();
-        form.populate(this);
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.name = this.name;
+        if (this.genre) {
+            form.genre = this.genre.id;
+        }
+        if (this.backgroundFile) {
+            form.backgroundFile = this.backgroundFile.id;
+        }
+        form.synopsis = this.synopsis;
+        form.duration = this.duration;
+        form.pegi = this.pegi;
+        form.singleVolume = this.singleVolume;
+        if (this.coverFile) {
+            form.coverFile = this.coverFile.id;
+        }
 
         return form;
     }

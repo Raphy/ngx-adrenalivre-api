@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { CreditReload } from "./credit-reload";
 import { PromotionalCodeCreditReload } from "./promotional-code-credit-reload";
 import { FreeCreditReload } from "./free-credit-reload";
@@ -8,6 +9,8 @@ import { PaidCreditReload } from "./paid-credit-reload";
 export class CreditReloadFactory {
     static create(discriminator: string, data: any = {}): CreditReload
     {
+        console.log('CreditRelaodFactory Create');
+
         switch (discriminator) {
             case 'free':
                 return new FreeCreditReload(data);

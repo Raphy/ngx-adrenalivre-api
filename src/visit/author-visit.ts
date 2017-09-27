@@ -17,4 +17,14 @@ export class AuthorVisit extends Visit {
 
         return super.hydrate(data);
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        if (this.author) {
+            form.author = this.author.id;
+        }
+
+        return form;
+    }
 }
