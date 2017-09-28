@@ -43,4 +43,12 @@ export class File extends Model {
 
         return this;
     }
+
+    toForm(): object {
+        let form: any = super.toForm();
+
+        form.name = this.name;
+
+        return form;
+    }
 }
