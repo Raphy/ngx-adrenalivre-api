@@ -26,8 +26,12 @@ export abstract class PromotionalCode extends Model {
         super.hydrate(data);
 
         this.createdAt = new Date(data.createdAt);
-        this.endAt = new Date(data.endAt);
-        this.startAt = new Date(data.startAt);
+        if (data.startAt) {
+            this.startAt = new Date(data.startAt);
+        }
+        if (data.endAt) {
+            this.endAt = new Date(data.endAt);
+        }
 
         return this;
     }
@@ -39,10 +43,10 @@ export abstract class PromotionalCode extends Model {
         form.code = this.code;
         form.usages = this.usages;
         form.active = this.active;
-        if (this.startAt) {
+        if (this.startAt instanceof Date && this.startAt.getTime() === this.startAt.getTime()) {
             form.startAt = this.startAt.toISOString();
         }
-        if (this.endAt) {
+        if (this.endAt instanceof Date && this.endAt.getTime() === this.endAt.getTime()) {
             form.endAt = this.endAt.toISOString();
         }
 
