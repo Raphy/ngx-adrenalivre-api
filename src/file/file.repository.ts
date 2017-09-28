@@ -24,7 +24,7 @@ export class FileRepository extends Repository<File> {
 
     public saveContents(file: File): Observable<null> {
         const formData: FormData = new FormData();
-        formData.append('contents', file.contents.file, file.contents.name);
+        formData.append('contents', file.contents, file.contents.name);
         const headers = new Headers();
         return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {headers: headers})
             .map((response: Response) => null);
