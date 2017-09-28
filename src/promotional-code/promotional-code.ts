@@ -39,8 +39,12 @@ export abstract class PromotionalCode extends Model {
         form.code = this.code;
         form.usages = this.usages;
         form.active = this.active;
-        form.startAt = this.startAt.toISOString();
-        form.endAt = this.endAt.toISOString();
+        if (this.startAt) {
+            form.startAt = this.startAt.toISOString();
+        }
+        if (this.endAt) {
+            form.endAt = this.endAt.toISOString();
+        }
 
         return form;
     }
