@@ -16,7 +16,7 @@ export class PromotionalCodeFactory {
             case 'volume':
                 return new VolumePromotionalCode(data);
             default:
-                throw new Error('The credit reload discriminator "' + discriminator + '" is not handled');
+                throw new Error('The promotional code discriminator "' + discriminator + '" is not handled');
         }
     }
 }

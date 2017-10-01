@@ -15,6 +15,7 @@ import { CollectionRepository } from "./collection";
 import { VolumeRepository } from "./volume";
 import { CreditReloadFactory, CreditReloadRepository } from "./credit-reload";
 import { PromotionalCodeFactory, PromotionalCodeRepository } from "./promotional-code";
+import { BookListFactory, BookListRepository } from "./book-list";
 
 const ADRENALIVRE_COMPONENTS = [
     FileComponent
@@ -38,7 +39,9 @@ const ADRENALIVRE_PROVIDERS = [
     CreditReloadFactory,
     CreditReloadRepository,
     PromotionalCodeFactory,
-    PromotionalCodeRepository
+    PromotionalCodeRepository,
+    BookListFactory,
+    BookListRepository,
 ];
 
 @NgModule({

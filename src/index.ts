@@ -1,5 +1,6 @@
 export * from './auth';
 export * from './author';
+export * from './book-list';
 export * from './collection';
 export * from './configuration';
 export * from './credit-offer';
