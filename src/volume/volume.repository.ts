@@ -60,3 +60,4 @@ export class VolumeRepository extends Repository<Volume> {
                 throw errorCaught;
             });
     }
+}
