@@ -15,7 +15,7 @@ export class VolumeRepository extends Repository<Volume> {
     }
 
     protected getEndpoint(item: Volume | null = null): string {
-          return 'volumes';
+        return 'volumes';
     }
 
     protected createItem(itemData: any = {}): Volume {
@@ -34,4 +34,29 @@ export class VolumeRepository extends Repository<Volume> {
                 throw errorCaught;
             });
     }
-}
+
+    wish(item: Volume): Observable<void | Error> {
+        return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + item.id + '/wish', null)
+            .map((response: Response) => null)
+            .catch((errorCaught: any) => {
+                const error = ErrorFactory.create(errorCaught);
+                if (error) {
+                    return Observable.of(error);
+                }
+
+                throw errorCaught;
+            });
+    }
+
+    unwish(item: Volume): Observable<void | Error> {
+        return this.http.delete(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + item.id + '/wish')
+            .map((response: Response) => null)
+            .catch((errorCaught: any) => {
+                const error = ErrorFactory.create(errorCaught);
+                if (error) {
+                    return Observable.of(error);
+                }
+
+                throw errorCaught;
+            });
+    }

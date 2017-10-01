@@ -29,6 +29,8 @@ export class User extends Model {
 
     creditReloads: CreditReload[] = [];
 
+    wishedVolumes: Volume[] = [];
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -49,6 +51,10 @@ export class User extends Model {
 
         if (data.volumes) {
             this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
+        }
+
+        if (data.wishedVolumes) {
+            this.wishedVolumes = data.wishedVolumes.map((volumeData) => new Volume(volumeData));
         }
 
         if (data.creditReloads) {
