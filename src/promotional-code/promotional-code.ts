@@ -11,6 +11,8 @@ export abstract class PromotionalCode extends Model {
 
     active: boolean;
 
+    singleUsagePerUser: boolean;
+
     startAt: Date;
 
     endAt: Date;
@@ -43,6 +45,7 @@ export abstract class PromotionalCode extends Model {
         form.code = this.code;
         form.usages = this.usages;
         form.active = this.active;
+        form.singleUsagePerUser = this.singleUsagePerUser;
         if (this.startAt instanceof Date && this.startAt.getTime() === this.startAt.getTime()) {
             form.startAt = this.startAt.toISOString();
         }
