@@ -4,7 +4,7 @@ import { Volume } from "../volume";
 export class VolumeBookList extends BookList {
     public discriminator: string = 'volume';
 
-    public volumes: Volume[];
+    public volumes: Volume[] = [];
 
     hydrate(data: any) {
         Object.assign(this, data);

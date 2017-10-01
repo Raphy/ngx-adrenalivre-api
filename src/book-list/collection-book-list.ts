@@ -4,7 +4,7 @@ import { Collection } from "../collection";
 export class CollectionBookList extends BookList {
     public discriminator: string = 'collection';
 
-    public collections: Collection[];
+    public collections: Collection[] = [];
 
     hydrate(data: any) {
         Object.assign(this, data);
