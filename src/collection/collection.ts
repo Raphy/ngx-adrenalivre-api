@@ -31,6 +31,8 @@ export class Collection extends Model {
 
     coverFile: File;
 
+    screenshots: File[] = [];
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -71,6 +73,10 @@ export class Collection extends Model {
             this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
         }
 
+        if (data.screenshots) {
+            this.screenshots = data.screenshots.map((fileData) => new File(fileData));
+        }
+
         return this;
     }
 
@@ -91,6 +97,7 @@ export class Collection extends Model {
         if (this.coverFile) {
             form.coverFile = this.coverFile.id;
         }
+        form.screenshots = this.screenshots.map((file) => file.id);
 
         return form;
     }
