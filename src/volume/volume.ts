@@ -107,7 +107,11 @@ export class Volume extends Model {
         form.synopsis = this.synopsis;
         form.duration = this.duration;
         form.creditsCost = this.creditsCost;
-        form.authors = this.authors.map((author) => author.id);
+        form.authors = this.authors.map((author?: Author) => {
+            if (author) {
+                return author.id;
+            }
+        });
 
         return form;
     }

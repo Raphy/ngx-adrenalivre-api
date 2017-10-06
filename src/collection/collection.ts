@@ -97,7 +97,11 @@ export class Collection extends Model {
         if (this.coverFile) {
             form.coverFile = this.coverFile.id;
         }
-        form.screenshots = this.screenshots.map((file) => file.id);
+        form.screenshots = this.screenshots.map((file?: File) => {
+            if (file) {
+                return file.id
+            }
+        });
 
         return form;
     }
