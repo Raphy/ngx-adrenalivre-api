@@ -7,7 +7,7 @@ export class CollectionBookList extends BookList {
     public collections: Collection[] = [];
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         if (data.collections) {
             this.collections = data.collections.map((collectionData => new Collection(collectionData)));

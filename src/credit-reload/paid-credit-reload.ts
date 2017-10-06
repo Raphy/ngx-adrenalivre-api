@@ -7,7 +7,6 @@ export class PaidCreditReload extends CreditReload {
 
     price: number;
 
-
     toForm(): Object {
         let form: any = super.toForm();
 

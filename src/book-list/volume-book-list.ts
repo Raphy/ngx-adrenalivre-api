@@ -7,7 +7,7 @@ export class VolumeBookList extends BookList {
     public volumes: Volume[] = [];
 
     hydrate(data: any) {
-        Object.assign(this, data);
+        super.hydrate(data);
 
         if (data.volumes) {
             this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
