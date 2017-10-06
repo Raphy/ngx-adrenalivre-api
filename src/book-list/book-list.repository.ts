@@ -20,7 +20,7 @@ export class BookListRepository extends Repository<BookList> {
         console.log('Creating BookList item', itemData);
         let item = BookListFactory.create(itemData.discriminator, itemData);
 
-        console.log('Created BookList item', itemData);
+        console.log('Created BookList item', item);
 
         return item;
     }

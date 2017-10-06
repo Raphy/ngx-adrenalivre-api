@@ -17,7 +17,7 @@ export abstract class Repository<T extends Model> {
     list(params: object = {}): Observable<T[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/' + this.getEndpoint(null), {params: params})
             .map((response: Response) => {
-                console.log('Repository List Response', response);
+                console.log('Repository List Response', response.json());
 
                 return response.json();
             })

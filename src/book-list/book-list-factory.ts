@@ -10,9 +10,17 @@ export class BookListFactory {
         console.log('Creating BookList', discriminator, data);
         switch (discriminator) {
             case 'collection':
-                return new CollectionBookList(data);
+                let item = new CollectionBookList(data);
+
+                console.log('Created Factory', item);
+
+                return item;
             case 'volume':
-                return new VolumeBookList(data);
+                let item = new VolumeBookList(data);
+
+                console.log('Created Factory', item);
+
+                return item;
             default:
                 throw new Error('The book list discriminator "' + discriminator + '" is not handled');
         }
