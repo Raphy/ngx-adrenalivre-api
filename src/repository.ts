@@ -16,12 +16,21 @@ export abstract class Repository<T extends Model> {
 
     list(params: object = {}): Observable<T[] | Error> {
         return this.http.get(this.configuration.baseUrl + '/' + this.getEndpoint(null), {params: params})
-            .map((response: Response) => response.json())
-            .map((data: object[]) => data.map((itemData) => this.createItem(itemData)))
-            .do((res) => {
+            .map((response: Response) => {
+                console.log('Repository List Response', response);
+
+                return response.json();
+            })
+            .map((data: object[]) => {
+                console.log('Repository List Before Map', data);
+
+                let items = data.map((itemData) => this.createItem(itemData));
+
                 if (this.configuration.debug) {
-                    console.log('Repository List', res);
+                    console.log('Repository List After Map', items);
                 }
+
+                return items;
             })
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
@@ -35,12 +44,26 @@ export abstract class Repository<T extends Model> {
 
     retrieve(id: string): Observable<T | Error> {
         return this.http.get(this.configuration.baseUrl + '/' + this.getEndpoint(null) + '/' + id)
-            .map((response: Response) => response.json())
-            .map((itemData: object) => this.createItem(itemData))
-            .do((res) => {
+            .map((response: Response) => {
+                console.log('Repository Retrieve Response', response);
+
+                return response.json();
+            })
+            .map((itemData: object) => {
                 if (this.configuration.debug) {
-                    console.log('Repository Retrieve', res);
+                    console.log('Repository Retrieve Before Map', itemData);
                 }
+
+                let item = this.createItem(itemData);
+
+                if (this.configuration.debug) {
+                    console.log('Repository Retrieve After Map', item);
+                }
+
+                return item;
+            })
+            .do((item) => {
+
             })
             .catch((errorCaught: any) => {
                 const error = ErrorFactory.create(errorCaught);
@@ -59,7 +82,7 @@ export abstract class Repository<T extends Model> {
                 .map((data: object) => item.hydrate(data))
                 .do((res) => {
                     if (this.configuration.debug) {
-                        console.log('Repository Save', res);
+                        console.log('Repository Save after Map', res);
                     }
                 })
                 .catch((errorCaught: any) => {

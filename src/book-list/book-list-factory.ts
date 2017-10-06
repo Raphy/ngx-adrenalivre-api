@@ -7,6 +7,7 @@ import { VolumeBookList } from "./volume-book-list";
 export class BookListFactory {
     public static create(discriminator: string, data: any = {}): BookList
     {
+        console.log('Creating BookList', discriminator, data);
         switch (discriminator) {
             case 'collection':
                 return new CollectionBookList(data);
