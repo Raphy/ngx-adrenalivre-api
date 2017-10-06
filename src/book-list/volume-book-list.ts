@@ -7,19 +7,11 @@ export class VolumeBookList extends BookList {
     public volumes: Volume[] = [];
 
     hydrate(data: any) {
-        console.log('VolumeBookList.hydrate', data);
-
         super.hydrate(data);
-
-        console.log('VolumeBookList.hydrate', data);
-        console.log('VolumeBookList.hydrate', this.volumes);
 
         if (data.volumes) {
             this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
         }
-
-        console.log('VolumeBookList.hydrate', this);
-        console.log('VolumeBookList.hydrate', this.volumes);
 
         return this;
     }
@@ -28,7 +20,11 @@ export class VolumeBookList extends BookList {
         let form: any = super.toForm();
 
         if (this.volumes) {
-            form.volumes = this.volumes.map((volume) => volume.id);
+            form.volumes = this.volumes.map((volume?: Volume) => {
+                if (volume) {
+                    return volume.id;
+                }
+            });
         }
 
         return form;

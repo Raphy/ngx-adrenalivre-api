@@ -7,21 +7,17 @@ import { VolumeBookList } from "./volume-book-list";
 export class BookListFactory {
     public static create(discriminator: string, data: any = {}): BookList
     {
-        let item;
-        console.log('Creating BookList', discriminator, data);
         switch (discriminator) {
             case 'collection':
-                item = new CollectionBookList(data);
+                let collectionBookList = new CollectionBookList(data);
+                collectionBookList.hydrate(data);
 
-                console.log('Created Factory', item);
-
-                return item;
+                return collectionBookList;
             case 'volume':
-                item = new VolumeBookList(data);
+                let volumeBookList = new VolumeBookList(data);
+                volumeBookList.hydrate(data);
 
-                console.log('Created Factory', item);
-
-                return item;
+                return volumeBookList;
             default:
                 throw new Error('The book list discriminator "' + discriminator + '" is not handled');
         }

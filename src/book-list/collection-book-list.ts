@@ -7,9 +7,6 @@ export class CollectionBookList extends BookList {
     public collections: Collection[] = [];
 
     hydrate(data: any) {
-        console.log('CollectionBookList.hydrate', data);
-
-
         super.hydrate(data);
 
         if (data.collections) {

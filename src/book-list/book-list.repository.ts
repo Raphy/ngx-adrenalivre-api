@@ -17,11 +17,6 @@ export class BookListRepository extends Repository<BookList> {
     }
 
     protected createItem(itemData: any = {}): BookList {
-        console.log('Creating BookList item', itemData);
-        let item = BookListFactory.create(itemData.discriminator, itemData);
-
-        console.log('Created BookList item', item);
-
-        return item;
+        return BookListFactory.create(itemData.discriminator, itemData);
     }
 }
