@@ -7,16 +7,17 @@ import { VolumeBookList } from "./volume-book-list";
 export class BookListFactory {
     public static create(discriminator: string, data: any = {}): BookList
     {
+        let item;
         console.log('Creating BookList', discriminator, data);
         switch (discriminator) {
             case 'collection':
-                let item = new CollectionBookList(data);
+                item = new CollectionBookList(data);
 
                 console.log('Created Factory', item);
 
                 return item;
             case 'volume':
-                let item = new VolumeBookList(data);
+                item = new VolumeBookList(data);
 
                 console.log('Created Factory', item);
 
