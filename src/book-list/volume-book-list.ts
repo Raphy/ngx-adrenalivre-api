@@ -18,6 +18,7 @@ export class VolumeBookList extends BookList {
             this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
         }
 
+        console.log('VolumeBookList.hydrate', this);
         console.log('VolumeBookList.hydrate', this.volumes);
 
         return this;
