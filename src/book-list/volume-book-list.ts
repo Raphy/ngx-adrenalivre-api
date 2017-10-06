@@ -9,9 +9,14 @@ export class VolumeBookList extends BookList {
     hydrate(data: any) {
         super.hydrate(data);
 
+        console.log('VolumeBookList.hydrate', data);
+        console.log('VolumeBookList.hydrate', this.volumes);
+
         if (data.volumes) {
             this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
         }
+
+        console.log('VolumeBookList.hydrate', this.volumes);
 
         return this;
     }
