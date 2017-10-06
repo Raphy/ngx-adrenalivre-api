@@ -7,6 +7,8 @@ export class VolumeBookList extends BookList {
     public volumes: Volume[] = [];
 
     hydrate(data: any) {
+        console.log('VolumeBookList.hydrate', data);
+
         super.hydrate(data);
 
         console.log('VolumeBookList.hydrate', data);

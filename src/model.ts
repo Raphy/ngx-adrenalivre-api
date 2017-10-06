@@ -6,6 +6,8 @@ export abstract class Model {
     }
 
     hydrate(data: any) {
+        console.log('Model.hydrate', data);
+
         Object.assign(this, data);
 
         return this;
