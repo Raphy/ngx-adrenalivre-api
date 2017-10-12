@@ -30,6 +30,8 @@ export class Volume extends Model {
 
     authors: Author[] = [];
 
+    position?: number;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -112,6 +114,9 @@ export class Volume extends Model {
                 return author.id;
             }
         });
+        if (this.position) {
+            form.position = this.position;
+        }
 
         return form;
     }
