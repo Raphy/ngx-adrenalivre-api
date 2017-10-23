@@ -7,10 +7,11 @@ import { Configuration } from '../configuration';
 import { File } from './file';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
+import { HttpClient, HttpRequest } from "@angular/common/http";
 
 @Injectable()
 export class FileRepository extends Repository<File> {
-    constructor(http: AuthHttp, configuration: Configuration) {
+    constructor(http: AuthHttp, configuration: Configuration, private httpClient: HttpClient) {
         super(http, configuration);
     }
 
@@ -25,9 +26,11 @@ export class FileRepository extends Repository<File> {
     public saveContents(file: File): Observable<null> {
         const formData: FormData = new FormData();
         formData.append('contents', file.contents, file.contents.name);
-        const headers = new Headers();
-        return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {headers: headers})
-            .map((response: Response) => null);
+
+        let req = new HttpRequest('POST', this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {reportProgress: true});
+        this.http.updateHeaders(req.headers);
+
+        return this.httpClient.request(req);
     }
 
     public getContents(file: File): Observable<Blob | Error> {

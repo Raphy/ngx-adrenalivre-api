@@ -1,6 +1,7 @@
 import { Http, RequestOptionsArgs, Response, Request, RequestOptions, ConnectionBackend, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class AuthHttp extends Http {
@@ -8,7 +9,7 @@ export class AuthHttp extends Http {
         super(backend, defaultOptions);
     }
 
-    private updateHeaders(headers: Headers) {
+    updateHeaders(headers: Headers | HttpHeaders) {
         if (headers.has('Authorization') === false) {
             const sessionId = localStorage.getItem('adrenalivre_session_id');
             if (sessionId) {
