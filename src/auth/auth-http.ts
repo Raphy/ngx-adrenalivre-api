@@ -9,11 +9,13 @@ export class AuthHttp extends Http {
         super(backend, defaultOptions);
     }
 
-    updateHeaders(headers: Headers | HttpHeaders) {
-        if (headers.has('Authorization') === false) {
-            const sessionId = localStorage.getItem('adrenalivre_session_id');
-            if (sessionId) {
-                headers.append('Authorization', 'Bearer ' + sessionId);
+    updateHeaders(headers) {
+        if (headers instanceof Headers || headers instanceof HttpHeaders) {
+            if (headers.has('Authorization') === false) {
+                const sessionId = localStorage.getItem('adrenalivre_session_id');
+                if (sessionId) {
+                    headers.set('Authorization', 'Bearer ' + sessionId);
+                }
             }
         }
     }
