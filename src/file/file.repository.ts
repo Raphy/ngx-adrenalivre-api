@@ -7,7 +7,7 @@ import { Configuration } from '../configuration';
 import { File } from './file';
 import { Error, ErrorFactory } from '../error';
 import { Repository } from "../repository";
-import { HttpClient, HttpRequest } from "@angular/common/http";
+import { HttpClient, HttpRequest, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class FileRepository extends Repository<File> {
@@ -27,8 +27,9 @@ export class FileRepository extends Repository<File> {
         const formData: FormData = new FormData();
         formData.append('contents', file.contents, file.contents.name);
 
-        let req = new HttpRequest('POST', this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {reportProgress: true});
-        this.http.updateHeaders(req.headers);
+        let headers = new HttpHeaders();
+        this.http.updateHeaders(headers);
+        let req = new HttpRequest('POST', this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {headers: headers, reportProgress: true});
 
         return this.httpClient.request(req);
     }
