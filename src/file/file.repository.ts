@@ -27,8 +27,7 @@ export class FileRepository extends Repository<File> {
         const formData: FormData = new FormData();
         formData.append('contents', file.contents, file.contents.name);
 
-        let headers = new HttpHeaders();
-        this.http.updateHeaders(headers);
+        let headers = new HttpHeaders('Authorization: Bearer ' + localStorage.getItem('adrenalivre_session_id'));
         let req = new HttpRequest('POST', this.configuration.baseUrl + '/' + this.getEndpoint() + '/' + file.id + '/contents', formData, {headers: headers, reportProgress: true});
 
         return this.httpClient.request(req);
