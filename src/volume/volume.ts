@@ -10,7 +10,11 @@ export class Volume extends Model {
 
     desktopBackgroundFile: File;
 
+    mobileBackgroundFile: File;
+
     androidAssetBundleFile: File;
+
+    iosAssetBundleFile: File;
 
     storyFile: File;
 
@@ -48,6 +52,14 @@ export class Volume extends Model {
             }
         }
 
+        if (data.mobileBackgroundFile) {
+            if (this.mobileBackgroundFile instanceof File) {
+                this.mobileBackgroundFile.hydrate(data.mobileBackgroundFile);
+            } else {
+                this.mobileBackgroundFile = new File(data.mobileBackgroundFile);
+            }
+        }
+
         if (data.coverFile) {
             if (this.coverFile instanceof File) {
                 this.coverFile.hydrate(data.coverFile);
@@ -61,6 +73,14 @@ export class Volume extends Model {
                 this.androidAssetBundleFile.hydrate(data.androidAssetBundleFile);
             } else {
                 this.androidAssetBundleFile = new File(data.androidAssetBundleFile);
+            }
+        }
+
+        if (data.iosAssetBundleFile) {
+            if (this.iosAssetBundleFile instanceof File) {
+                this.iosAssetBundleFile.hydrate(data.iosAssetBundleFile);
+            } else {
+                this.iosAssetBundleFile = new File(data.iosAssetBundleFile);
             }
         }
 
@@ -100,8 +120,14 @@ export class Volume extends Model {
         if (this.desktopBackgroundFile) {
             form.desktopBackgroundFile = this.desktopBackgroundFile.id;
         }
+        if (this.mobileBackgroundFile) {
+            form.mobileBackgroundFile = this.mobileBackgroundFile.id;
+        }
         if (this.androidAssetBundleFile) {
             form.androidAssetBundleFile = this.androidAssetBundleFile.id;
+        }
+        if (this.iosAssetBundleFile) {
+            form.iosAssetBundleFile = this.iosAssetBundleFile.id;
         }
         if (this.storyFile) {
             form.storyFile = this.storyFile.id;

@@ -33,6 +33,10 @@ export class Collection extends Model {
 
     screenshots: File[] = [];
 
+    mobileBackgroundFile: File;
+
+    websiteUrl?: string;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -46,6 +50,14 @@ export class Collection extends Model {
                 this.desktopBackgroundFile.hydrate(data.desktopBackgroundFile);
             } else {
                 this.desktopBackgroundFile = new File(data.desktopBackgroundFile);
+            }
+        }
+
+        if (data.mobileBackgroundFile) {
+            if (this.mobileBackgroundFile instanceof File) {
+                this.mobileBackgroundFile.hydrate(data.mobileBackgroundFile);
+            } else {
+                this.mobileBackgroundFile = new File(data.mobileBackgroundFile);
             }
         }
 
@@ -90,6 +102,9 @@ export class Collection extends Model {
         if (this.desktopBackgroundFile) {
             form.desktopBackgroundFile = this.desktopBackgroundFile.id;
         }
+        if (this.mobileBackgroundFile) {
+            form.mobileBackgroundFile = this.mobileBackgroundFile.id;
+        }
         form.synopsis = this.synopsis;
         form.duration = this.duration;
         form.pegi = this.pegi;
@@ -102,6 +117,7 @@ export class Collection extends Model {
                 return file.id
             }
         });
+        form.websiteUrl = this.websiteUrl;
 
         return form;
     }
