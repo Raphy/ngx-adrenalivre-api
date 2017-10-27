@@ -36,6 +36,14 @@ export class Volume extends Model {
 
     position?: number;
 
+    androidAdMobVideo?: string;
+
+    androidAdMobImage?: string;
+
+    iosAdMobVideo?: string;
+
+    iosAdMobImage?: string;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -143,6 +151,10 @@ export class Volume extends Model {
         if (this.position) {
             form.position = this.position;
         }
+        form.androidAdMobVideo = this.androidAdMobVideo;
+        form.androidAdMobImage = this.androidAdMobImage;
+        form.iosAdMobVideo = this.iosAdMobVideo;
+        form.iosAdMobImage = this.iosAdMobImage;
 
         return form;
     }
