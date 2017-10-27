@@ -8,9 +8,9 @@ export class Volume extends Model {
 
     coverFile: File;
 
-    backgroundFile: File;
+    desktopBackgroundFile: File;
 
-    assetBundleFile: File;
+    androidAssetBundleFile: File;
 
     storyFile: File;
 
@@ -40,11 +40,11 @@ export class Volume extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
-        if (data.backgroundFile) {
-            if (this.backgroundFile instanceof File) {
-                this.backgroundFile.hydrate(data.backgroundFile);
+        if (data.desktopBackgroundFile) {
+            if (this.desktopBackgroundFile instanceof File) {
+                this.desktopBackgroundFile.hydrate(data.desktopBackgroundFile);
             } else {
-                this.backgroundFile = new File(data.backgroundFile);
+                this.desktopBackgroundFile = new File(data.desktopBackgroundFile);
             }
         }
 
@@ -56,11 +56,11 @@ export class Volume extends Model {
             }
         }
 
-        if (data.assetBundleFile) {
-            if (this.assetBundleFile instanceof File) {
-                this.assetBundleFile.hydrate(data.assetBundleFile);
+        if (data.androidAssetBundleFile) {
+            if (this.androidAssetBundleFile instanceof File) {
+                this.androidAssetBundleFile.hydrate(data.androidAssetBundleFile);
             } else {
-                this.assetBundleFile = new File(data.assetBundleFile);
+                this.androidAssetBundleFile = new File(data.androidAssetBundleFile);
             }
         }
 
@@ -97,11 +97,11 @@ export class Volume extends Model {
         if (this.collection) {
             form.collection = this.collection.id;
         }
-        if (this.backgroundFile) {
-            form.backgroundFile = this.backgroundFile.id;
+        if (this.desktopBackgroundFile) {
+            form.desktopBackgroundFile = this.desktopBackgroundFile.id;
         }
-        if (this.assetBundleFile) {
-            form.assetBundleFile = this.assetBundleFile.id;
+        if (this.androidAssetBundleFile) {
+            form.androidAssetBundleFile = this.androidAssetBundleFile.id;
         }
         if (this.storyFile) {
             form.storyFile = this.storyFile.id;

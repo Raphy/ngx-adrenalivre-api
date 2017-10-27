@@ -9,7 +9,7 @@ export class Collection extends Model {
 
     genre: Genre;
 
-    backgroundFile: File;
+    desktopBackgroundFile: File;
 
     synopsis?: string;
 
@@ -41,11 +41,11 @@ export class Collection extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
-        if (data.backgroundFile) {
-            if (this.backgroundFile instanceof File) {
-                this.backgroundFile.hydrate(data.backgroundFile);
+        if (data.desktopBackgroundFile) {
+            if (this.desktopBackgroundFile instanceof File) {
+                this.desktopBackgroundFile.hydrate(data.desktopBackgroundFile);
             } else {
-                this.backgroundFile = new File(data.backgroundFile);
+                this.desktopBackgroundFile = new File(data.desktopBackgroundFile);
             }
         }
 
@@ -87,8 +87,8 @@ export class Collection extends Model {
         if (this.genre) {
             form.genre = this.genre.id;
         }
-        if (this.backgroundFile) {
-            form.backgroundFile = this.backgroundFile.id;
+        if (this.desktopBackgroundFile) {
+            form.desktopBackgroundFile = this.desktopBackgroundFile.id;
         }
         form.synopsis = this.synopsis;
         form.duration = this.duration;
