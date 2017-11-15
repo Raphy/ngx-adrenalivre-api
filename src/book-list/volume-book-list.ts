@@ -10,7 +10,7 @@ export class VolumeBookList extends BookList {
         super.hydrate(data);
 
         if (data.volumes) {
-            this.volumes = data.volumes.map((volumeData => new Volume(volumeData)));
+            this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
         }
 
         return this;
