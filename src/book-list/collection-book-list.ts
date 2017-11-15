@@ -10,7 +10,7 @@ export class CollectionBookList extends BookList {
         super.hydrate(data);
 
         if (data.collections) {
-            this.collections = data.collections.map((collectionData => new Collection(collectionData)));
+            this.collections = data.collections.map((collectionData) => new Collection(collectionData));
         }
 
         return this;
