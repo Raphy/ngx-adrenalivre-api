@@ -31,6 +31,8 @@ export class User extends Model {
 
     wishedVolumes: Volume[] = [];
 
+    lastActivityAt: Date;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -40,6 +42,10 @@ export class User extends Model {
         super.hydrate(data);
 
         this.createdAt = new Date(data.createdAt);
+
+        if (data.lastActivityAt) {
+            this.lastActivityAt = new Date(data.lastActivityAt);
+        }
 
         if (data.profilePhotoFile) {
             if (this.profilePhotoFile instanceof File) {
