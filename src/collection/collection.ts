@@ -5,11 +5,11 @@ import { Volume } from '../volume/volume';
 import { Model } from "../model";
 
 export class Collection extends Model {
-    name: string;
+    name?: string;
 
-    genre: Genre;
+    genre?: Genre;
 
-    desktopBackgroundFile: File;
+    desktopBackgroundFile?: File;
 
     synopsis?: string;
 
@@ -17,13 +17,13 @@ export class Collection extends Model {
 
     pegi?: number;
 
-    singleVolume: boolean;
+    singleVolume?: boolean;
 
-    recommendationRate: string;
+    recommendationRate?: string;
 
     createdAt: string;
 
-    updatedAt: string;
+    updatedAt?: string;
 
     volumes: Volume[] = [];
 
@@ -33,9 +33,11 @@ export class Collection extends Model {
 
     screenshots: File[] = [];
 
-    mobileBackgroundFile: File;
+    mobileBackgroundFile?: File;
 
     websiteUrl?: string;
+
+    visibility: string;
 
     constructor(data: any = {}) {
         super(data);
@@ -118,6 +120,7 @@ export class Collection extends Model {
             }
         });
         form.websiteUrl = this.websiteUrl;
+        form.visibility = this.visibility;
 
         return form;
     }

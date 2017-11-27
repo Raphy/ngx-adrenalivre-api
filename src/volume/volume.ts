@@ -6,27 +6,27 @@ import { Model } from "../model";
 export class Volume extends Model {
     name?: string;
 
-    coverFile: File;
+    coverFile?: File;
 
-    desktopBackgroundFile: File;
+    desktopBackgroundFile?: File;
 
-    mobileBackgroundFile: File;
+    mobileBackgroundFile?: File;
 
-    androidAssetBundleFile: File;
+    androidAssetBundleFile?: File;
 
-    iosAssetBundleFile: File;
+    iosAssetBundleFile?: File;
 
-    storyFile: File;
+    storyFile?: File;
 
-    collection: Collection;
+    collection?: Collection;
 
     synopsis?: string;
 
     duration?: number;
 
-    creditsCost: number;
+    creditsCost?: number;
 
-    recommendationRate: string;
+    recommendationRate?: string;
 
     createdAt: string;
 
@@ -43,6 +43,8 @@ export class Volume extends Model {
     iosAdMobVideo?: string;
 
     iosAdMobImage?: string;
+
+    visibility: string;
 
     constructor(data: any = {}) {
         super(data);
@@ -155,6 +157,7 @@ export class Volume extends Model {
         form.androidAdMobImage = this.androidAdMobImage;
         form.iosAdMobVideo = this.iosAdMobVideo;
         form.iosAdMobImage = this.iosAdMobImage;
+        form.visibility = this.visibility;
 
         return form;
     }
