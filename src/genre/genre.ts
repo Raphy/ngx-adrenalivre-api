@@ -1,10 +1,13 @@
 import { File } from "../file";
 import { Model } from "../model";
+import { GenreVisit } from "../visit";
 
 export class Genre extends Model {
     name: string;
 
     illustrationFile: File;
+
+    visits: GenreVisit[] = [];
 
     constructor(data: any = {}) {
         super();
@@ -20,6 +23,10 @@ export class Genre extends Model {
             } else {
                 this.illustrationFile = new File(data.illustrationFile);
             }
+        }
+
+        if (data.visits) {
+            this.visits = data.visits.map((visitDate => new GenreVisit(visitDate)));
         }
 
         return this;

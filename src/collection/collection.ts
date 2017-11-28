@@ -4,6 +4,7 @@ import { Genre } from "../genre";
 import { Volume } from '../volume/volume';
 import { Model } from "../model";
 import { CollectionRate } from "../rate";
+import { CollectionVisit } from "../visit";
 
 export class Collection extends Model {
     name?: string;
@@ -41,6 +42,8 @@ export class Collection extends Model {
     visibility: string;
 
     rates: CollectionRate[] = [];
+
+    visits: CollectionVisit[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -96,6 +99,10 @@ export class Collection extends Model {
 
         if (data.rates) {
             this.rates = data.rates.map((rateDate => new CollectionRate(rateDate)));
+        }
+
+        if (data.visits) {
+            this.visits = data.visits.map((visitDate => new CollectionVisit(visitDate)));
         }
 
         return this;

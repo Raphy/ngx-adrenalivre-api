@@ -3,6 +3,7 @@ import { File } from "../file";
 import { Collection } from "../collection";
 import { Model } from "../model";
 import { VolumeRate } from "../rate";
+import { VolumeVisit } from "../visit";
 
 export class Volume extends Model {
     name?: string;
@@ -48,6 +49,8 @@ export class Volume extends Model {
     visibility: string;
 
     rates: VolumeRate[] = [];
+
+    visits: VolumeVisit[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -119,6 +122,10 @@ export class Volume extends Model {
 
         if (data.rates) {
             this.rates = data.rates.map((rateDate => new VolumeRate(rateDate)));
+        }
+
+        if (data.visits) {
+            this.visits = data.visits.map((visitDate => new VolumeVisit(visitDate)));
         }
 
         return this;
