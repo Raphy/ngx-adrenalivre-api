@@ -2,6 +2,7 @@ import { Author } from "../author";
 import { File } from "../file";
 import { Collection } from "../collection";
 import { Model } from "../model";
+import { VolumeRate } from "../rate";
 
 export class Volume extends Model {
     name?: string;
@@ -45,6 +46,8 @@ export class Volume extends Model {
     iosAdMobImage?: string;
 
     visibility: string;
+
+    rates: VolumeRate[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -112,6 +115,10 @@ export class Volume extends Model {
 
         if (data.authors) {
             this.authors = data.authors.map((authorData => new Author(authorData)));
+        }
+
+        if (data.rates) {
+            this.rates = data.rates.map((rateDate => new VolumeRate(rateDate)));
         }
 
         return this;

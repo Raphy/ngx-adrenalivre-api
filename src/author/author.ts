@@ -1,6 +1,7 @@
 import { File } from "../file";
 import { Volume } from "../volume";
 import { Model } from "../model";
+import { AuthorRate } from "../rate";
 
 export class Author extends Model{
     firstName: string;
@@ -21,6 +22,8 @@ export class Author extends Model{
 
     volumes: Volume[] = [];
 
+    rates: AuthorRate[] = [];
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -39,6 +42,10 @@ export class Author extends Model{
 
         if (data.volumes) {
             this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
+        }
+
+        if (data.rates) {
+            this.rates = data.rates.map((rateDate => new AuthorRate(rateDate)));
         }
 
         return this;

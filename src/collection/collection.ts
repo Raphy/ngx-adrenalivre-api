@@ -3,6 +3,7 @@ import { File } from "../file";
 import { Genre } from "../genre";
 import { Volume } from '../volume/volume';
 import { Model } from "../model";
+import { CollectionRate } from "../rate";
 
 export class Collection extends Model {
     name?: string;
@@ -38,6 +39,8 @@ export class Collection extends Model {
     websiteUrl?: string;
 
     visibility: string;
+
+    rates: CollectionRate[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -89,6 +92,10 @@ export class Collection extends Model {
 
         if (data.screenshots) {
             this.screenshots = data.screenshots.map((fileData) => new File(fileData));
+        }
+
+        if (data.rates) {
+            this.rates = data.rates.map((rateDate => new CollectionRate(rateDate)));
         }
 
         return this;
