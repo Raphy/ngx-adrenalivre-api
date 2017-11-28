@@ -27,6 +27,8 @@ export class Author extends Model{
 
     visits: AuthorVisit[] = [];
 
+    visitsDaysAgo: number;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);

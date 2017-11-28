@@ -9,6 +9,8 @@ export class Genre extends Model {
 
     visits: GenreVisit[] = [];
 
+    visitsDaysAgo: number;
+
     constructor(data: any = {}) {
         super();
         this.hydrate(data);

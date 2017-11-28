@@ -45,6 +45,8 @@ export class Collection extends Model {
 
     visits: CollectionVisit[] = [];
 
+    visitsDaysAgo: number;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);

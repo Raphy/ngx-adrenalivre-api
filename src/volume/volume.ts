@@ -55,6 +55,8 @@ export class Volume extends Model {
 
     readings: VolumeReading[] = [];
 
+    readingsDaysAgo: number;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
