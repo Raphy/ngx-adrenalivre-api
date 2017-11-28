@@ -3,6 +3,9 @@ import { Volume } from "../volume/volume";
 import { CreditReload } from "../credit-reload/credit-reload";
 import { CreditReloadFactory } from "../credit-reload/credit-reload-factory";
 import { Model } from "../model";
+import { Collection } from "../collection/collection";
+import { Genre } from "../genre/genre";
+import { Author } from "../author/author";
 
 export class User extends Model {
     emailAddress: string;
@@ -32,6 +35,14 @@ export class User extends Model {
     wishedVolumes: Volume[] = [];
 
     lastActivityAt: Date;
+
+    top5CollectionsVisited: Collection[] = [];
+
+    top5VolumesVisited: Volume[] = [];
+
+    top5GenresVisited: Genre[] = [];
+
+    top5AuthorsVisited: Author[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -65,6 +76,22 @@ export class User extends Model {
 
         if (data.creditReloads) {
             this.creditReloads = data.creditReloads.map((creditReloadData) => CreditReloadFactory.create(creditReloadData.discriminator, creditReloadData));
+        }
+
+        if (data.top5CollectionsVisited) {
+            this.top5CollectionsVisited = data.top5CollectionsVisited.map((collectionData) => new Collection(collectionData));
+        }
+
+        if (data.top5VolumesVisited) {
+            this.top5VolumesVisited = data.top5VolumesVisited.map((volumeData) => new Volume(volumeData));
+        }
+
+        if (data.top5GenresVisited) {
+            this.top5GenresVisited = data.top5GenresVisited.map((genreData) => new Genre(genreData));
+        }
+
+        if (data.top5AuthorsVisited) {
+            this.top5AuthorsVisited = data.top5AuthorsVisited.map((authorData) => new Author(authorData));
         }
 
         return this;
