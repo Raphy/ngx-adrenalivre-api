@@ -4,6 +4,7 @@ import { Collection } from "../collection";
 import { Model } from "../model";
 import { VolumeRate } from "../rate";
 import { VolumeVisit } from "../visit";
+import { VolumeReading } from "./volume-reading";
 
 export class Volume extends Model {
     name?: string;
@@ -51,6 +52,8 @@ export class Volume extends Model {
     rates: VolumeRate[] = [];
 
     visits: VolumeVisit[] = [];
+
+    readings: VolumeReading[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -126,6 +129,10 @@ export class Volume extends Model {
 
         if (data.visits) {
             this.visits = data.visits.map((visitDate => new VolumeVisit(visitDate)));
+        }
+
+        if (data.readings) {
+            this.readings = data.readings.map((readingData => new VolumeReading(readingData)));
         }
 
         return this;
