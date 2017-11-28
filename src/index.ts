@@ -9,6 +9,7 @@ export * from './error';
 export * from './file';
 export * from './genre';
 export * from './promotional-code';
+export * from './rate';
 export * from './session';
 export * from './slide';
 export * from './user';
