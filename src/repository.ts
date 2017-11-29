@@ -91,6 +91,10 @@ export abstract class Repository<T extends Model> {
     }
 
     remove(item: T): Observable<void | Error> {
+        if (this.configuration.debug) {
+            console.log(this.constructor.name + ' // Remove // ID', item.id);
+        }
+
         return this.http.delete(this.configuration.baseUrl + '/' + this.getEndpoint(null) + '/' + item.id)
             .map((response: Response) => null)
             .catch((errorCaught: any) => {
