@@ -15,6 +15,10 @@ export abstract class Repository<T extends Model> {
     protected abstract createItem(itemData: any | null): T;
 
     list(params: object = {}): Observable<T[] | Error> {
+        if (this.configuration.debug) {
+            console.log(this.constructor.name + ' // List // QueryParameters', params);
+        }
+
         return this.http.get(this.configuration.baseUrl + '/' + this.getEndpoint(null), {params: params})
             .map((response: Response) => response.json())
             .map((data: object[]) => data.map((itemData) => this.createItem(itemData)))
@@ -29,6 +33,10 @@ export abstract class Repository<T extends Model> {
     }
 
     retrieve(id: string): Observable<T | Error> {
+        if (this.configuration.debug) {
+            console.log(this.constructor.name + ' // Retrieve // ID', id);
+        }
+
         return this.http.get(this.configuration.baseUrl + '/' + this.getEndpoint(null) + '/' + id)
             .map((response: Response) => response.json())
             .map((itemData: object) => this.createItem(itemData))
@@ -43,7 +51,15 @@ export abstract class Repository<T extends Model> {
     }
 
     save(item: T): Observable<T | Error> {
+        if (this.configuration.debug) {
+            console.log(this.constructor.name + ' // Save // Payload', item.toForm());
+        }
+
         if (item && item.id) {
+            if (this.configuration.debug) {
+                console.log(this.constructor.name + ' // Save // Using PATCH method');
+            }
+
             return this.http.patch(this.configuration.baseUrl + '/' + this.getEndpoint(item) + '/' + item.id, item.toForm())
                 .map((response: Response) => response.json())
                 .map((data: object) => item.hydrate(data))
@@ -55,6 +71,10 @@ export abstract class Repository<T extends Model> {
 
                     throw errorCaught;
                 });
+        }
+
+        if (this.configuration.debug) {
+            console.log(this.constructor.name + ' // Save // Using POST method');
         }
 
         return this.http.post(this.configuration.baseUrl + '/' + this.getEndpoint(item), item.toForm())
