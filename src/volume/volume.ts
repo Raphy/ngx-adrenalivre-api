@@ -5,6 +5,7 @@ import { Model } from "../model";
 import { VolumeRate } from "../rate";
 import { VolumeVisit } from "../visit";
 import { VolumeReading } from "./volume-reading";
+import { VolumeSale } from "./volume-sale";
 
 export class Volume extends Model {
     name?: string;
@@ -56,6 +57,8 @@ export class Volume extends Model {
     readings: VolumeReading[] = [];
 
     readingsDaysAgo: number;
+
+    sales: VolumeSale[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -135,6 +138,10 @@ export class Volume extends Model {
 
         if (data.readings) {
             this.readings = data.readings.map((readingData => new VolumeReading(readingData)));
+        }
+
+        if (data.sales) {
+            this.sales = data.sales.map((saleData => new VolumeSale(saleData)));
         }
 
         return this;

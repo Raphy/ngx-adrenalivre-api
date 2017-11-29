@@ -6,6 +6,7 @@ import { Model } from "../model";
 import { Collection } from "../collection/collection";
 import { Genre } from "../genre/genre";
 import { Author } from "../author/author";
+import { VolumeSale } from "../volume/volume-sale";
 
 export class User extends Model {
     emailAddress: string;
@@ -43,6 +44,8 @@ export class User extends Model {
     top5GenresVisited: Genre[] = [];
 
     top5AuthorsVisited: Author[] = [];
+
+    purchases: VolumeSale[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -92,6 +95,10 @@ export class User extends Model {
 
         if (data.top5AuthorsVisited) {
             this.top5AuthorsVisited = data.top5AuthorsVisited.map((authorData) => new Author(authorData));
+        }
+
+        if (data.purchases) {
+            this.purchases = data.purchases.map((saleData => new VolumeSale(saleData)));
         }
 
         return this;
