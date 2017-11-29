@@ -3,6 +3,7 @@ import { Volume } from "../volume";
 import { Model } from "../model";
 import { AuthorRate } from "../rate";
 import { AuthorVisit } from "../visit";
+import { User } from "../user/user";
 
 export class Author extends Model{
     firstName: string;
@@ -28,6 +29,8 @@ export class Author extends Model{
     visits: AuthorVisit[] = [];
 
     visitsDaysAgo: number;
+
+    owners: User[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -55,6 +58,10 @@ export class Author extends Model{
 
         if (data.visits) {
             this.visits = data.visits.map((visitDate => new AuthorVisit(visitDate)));
+        }
+
+        if (data.owners) {
+            this.owners = data.owners.map((userData => new User(userData)));
         }
 
         return this;
