@@ -4,6 +4,7 @@ import { Model } from "../model";
 import { AuthorRate } from "../rate";
 import { AuthorVisit } from "../visit";
 import { User } from "../user/user";
+import { VolumeSale } from "../volume/volume-sale";
 
 export class Author extends Model{
     firstName: string;
@@ -31,6 +32,8 @@ export class Author extends Model{
     visitsDaysAgo: number;
 
     owners: User[] = [];
+
+    sales: VolumeSale[] = [];
 
     constructor(data: any = {}) {
         super(data);
@@ -62,6 +65,10 @@ export class Author extends Model{
 
         if (data.owners) {
             this.owners = data.owners.map((userData => new User(userData)));
+        }
+
+        if (data.sales) {
+            this.sales = data.sales.map((saleData => new VolumeSale(saleData)));
         }
 
         return this;

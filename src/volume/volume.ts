@@ -60,6 +60,8 @@ export class Volume extends Model {
 
     sales: VolumeSale[] = [];
 
+    salesDaysAgo: number;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);

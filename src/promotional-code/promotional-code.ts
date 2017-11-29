@@ -19,6 +19,8 @@ export abstract class PromotionalCode extends Model {
 
     createdAt: Date;
 
+    note?: string;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
