@@ -106,6 +106,9 @@ export class User extends Model {
         if (this.profilePhotoFile) {
             form.profilePhotoFile = this.profilePhotoFile.id;
         }
+        form.administrator = this.administrator;
+        form.betaTester = this.betaTester;
+        form.credits = this.credits;
 
         return form;
     }
