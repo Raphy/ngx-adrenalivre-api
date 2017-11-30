@@ -14,6 +14,10 @@ export class Slide extends Model {
 
     updatedAt: Date;
 
+    dataTarget?: string;
+
+    dataValue?: string;
+
     constructor(data: any = {}) {
         super(data);
         this.hydrate(data);
@@ -45,6 +49,8 @@ export class Slide extends Model {
         if (this.backgroundFile) {
             form.backgroundFile = this.backgroundFile.id;
         }
+        form.dataTarget = this.dataTarget;
+        form.dataValue = this.dataValue;
 
         return form;
     }
