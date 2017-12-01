@@ -6,6 +6,10 @@ export abstract class Model {
     }
 
     hydrate(data: any) {
+        if (!data) {
+            return this;
+        }
+        
         Object.assign(this, data);
 
         return this;
