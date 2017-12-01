@@ -19,6 +19,10 @@ export class Rate extends Model
     hydrate(data: any) : this {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.user) {
             if (this.user instanceof User) {
                 this.user.hydrate(data.user);

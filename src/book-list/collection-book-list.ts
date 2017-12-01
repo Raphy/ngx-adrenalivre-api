@@ -9,6 +9,10 @@ export class CollectionBookList extends BookList {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.collections) {
             this.collections = data.collections.map((collectionData) => new Collection(collectionData));
         }

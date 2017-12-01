@@ -9,6 +9,10 @@ export class VolumeRate extends Rate {
     hydrate(data: any) {
         Object.assign(this, data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.volume) {
             if (this.volume instanceof Volume) {
                 this.volume.hydrate(data.volume);

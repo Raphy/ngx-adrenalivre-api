@@ -7,6 +7,10 @@ export class CollectionVisit extends Visit {
     collection: Collection;
 
     hydrate(data: any) {
+        if (!data) {
+            return this;
+        }
+
         if (data.collection) {
             if (this.collection instanceof Collection) {
                 this.collection.hydrate(data.collection);

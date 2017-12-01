@@ -16,6 +16,10 @@ export abstract class Visit extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         this.visitedAt = new Date(data.visitedAt);
 
         if (data.user) {

@@ -29,6 +29,10 @@ export abstract class PromotionalCode extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         this.createdAt = new Date(data.createdAt);
         if (data.startAt) {
             this.startAt = new Date(data.startAt);

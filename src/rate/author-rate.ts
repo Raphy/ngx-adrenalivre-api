@@ -9,6 +9,10 @@ export class AuthorRate extends Rate {
     hydrate(data: any) {
         Object.assign(this, data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.author) {
             if (this.author instanceof Author) {
                 this.author.hydrate(data.author);

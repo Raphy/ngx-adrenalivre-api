@@ -7,6 +7,10 @@ export class GenreVisit extends Visit {
     genre: Genre;
 
     hydrate(data: any) {
+        if (!data) {
+            return this;
+        }
+
         if (data.genre) {
             if (this.genre instanceof Genre) {
                 this.genre.hydrate(data.genre);

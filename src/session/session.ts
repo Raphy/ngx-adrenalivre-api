@@ -17,6 +17,10 @@ export class Session extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         this.expiresAt = new Date(data.expiresAt);
 
         if (data.user) {

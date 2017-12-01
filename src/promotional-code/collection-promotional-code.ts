@@ -9,6 +9,10 @@ export class CollectionPromotionalCode extends PromotionalCode {
     hydrate(data: any) {
         Object.assign(this, data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.collection) {
             if (this.collection instanceof Collection) {
                 this.collection.hydrate(data.collection);

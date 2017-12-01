@@ -7,6 +7,10 @@ export class AuthorVisit extends Visit {
     author: Author;
 
     hydrate(data: any) {
+        if (!data) {
+            return this;
+        }
+
         if (data.author) {
             if (this.author instanceof Author) {
                 this.author.hydrate(data.author);

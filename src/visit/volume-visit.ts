@@ -7,6 +7,10 @@ export class VolumeVisit extends Visit {
     volume: Volume;
 
     hydrate(data: any) {
+        if (!data) {
+            return this;
+        }
+
         if (data.volume) {
             if (this.volume instanceof Volume) {
                 this.volume.hydrate(data.volume);

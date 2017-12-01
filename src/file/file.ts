@@ -30,6 +30,10 @@ export class File extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         this.createdAt = new Date(data.createdAt);
         this.updatedAt = new Date(data.updatedAt);
 

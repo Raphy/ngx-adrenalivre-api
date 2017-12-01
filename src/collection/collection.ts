@@ -55,6 +55,10 @@ export class Collection extends Model {
     hydrate(data: any) {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.desktopBackgroundFile) {
             if (this.desktopBackgroundFile instanceof File) {
                 this.desktopBackgroundFile.hydrate(data.desktopBackgroundFile);

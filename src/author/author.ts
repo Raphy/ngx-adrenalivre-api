@@ -43,6 +43,10 @@ export class Author extends Model{
     hydrate(data: any) : this {
         super.hydrate(data);
 
+        if (!data) {
+            return this;
+        }
+
         if (data.profileImageFile) {
             if (this.profileImageFile instanceof File) {
                 this.profileImageFile.hydrate(data.profileImageFile);
