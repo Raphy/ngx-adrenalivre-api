@@ -199,6 +199,6 @@ export class Volume extends Model {
     }
 
     get displayableName(): string {
-        return (this.collection && this.collection.name ? this.collection.name : '(no collection name)') + ' - ' + (this.name ? this.name : '(no volume name)');
+        return (this.name ? this.name : this.id) + ' ' + (this.collection && this.collection.name ? '(' + this.collection.name + ')' : '(' + this.collection.id + ')');
     }
 }
