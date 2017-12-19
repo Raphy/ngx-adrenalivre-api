@@ -114,6 +114,7 @@ export class User extends Model {
         form.emailAddress = this.emailAddress;
         form.plainPassword = this.plainPassword;
         form.firstName = this.firstName;
+        form.lastName = this.lastName;
         if (this.profilePhotoFile) {
             form.profilePhotoFile = this.profilePhotoFile.id;
         }
