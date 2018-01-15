@@ -1,10 +1,10 @@
 import { BookList } from "./book-list";
-import { Collection } from "../collection";
+import {CollectionBookListItem} from "./collection-book-list-item";
 
 export class CollectionBookList extends BookList {
     public discriminator: string = 'collection';
 
-    public collections: Collection[] = [];
+    public items: CollectionBookListItem[] = [];
 
     hydrate(data: any) {
         super.hydrate(data);
@@ -13,8 +13,8 @@ export class CollectionBookList extends BookList {
             return this;
         }
 
-        if (data.collections) {
-            this.collections = data.collections.map((collectionData) => new Collection(collectionData));
+        if (data.items) {
+            this.items = data.items.map((itemData) => new CollectionBookListItem(itemData));
         }
 
         return this;
@@ -23,8 +23,8 @@ export class CollectionBookList extends BookList {
     toForm(): object {
         let form: any = super.toForm();
 
-        if (this.collections) {
-            form.collections = this.collections.map((collection) => collection.id);
+        if (this.items) {
+            form.items = this.items.map((item) => item.toForm());
         }
 
         return form;

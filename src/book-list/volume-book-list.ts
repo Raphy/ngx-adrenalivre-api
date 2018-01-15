@@ -1,10 +1,10 @@
 import { BookList } from "./book-list";
-import { Volume } from "../volume";
+import {VolumeBookListItem} from "./volume-book-list-item";
 
 export class VolumeBookList extends BookList {
     public discriminator: string = 'volume';
 
-    public volumes: Volume[] = [];
+    public items: VolumeBookListItem[] = [];
 
     hydrate(data: any) {
         super.hydrate(data);
@@ -13,8 +13,8 @@ export class VolumeBookList extends BookList {
             return this;
         }
 
-        if (data.volumes) {
-            this.volumes = data.volumes.map((volumeData) => new Volume(volumeData));
+        if (data.items) {
+            this.items = data.items.map((itemData) => new VolumeBookListItem(itemData));
         }
 
         return this;
@@ -23,12 +23,8 @@ export class VolumeBookList extends BookList {
     toForm(): object {
         let form: any = super.toForm();
 
-        if (this.volumes) {
-            form.volumes = this.volumes.map((volume?: Volume) => {
-                if (volume) {
-                    return volume.id;
-                }
-            });
+        if (this.items) {
+            form.items = this.items.map((item) => item.toForm());
         }
 
         return form;
