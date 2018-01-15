@@ -58,6 +58,7 @@ export abstract class PromotionalCode extends Model {
         if (this.endAt instanceof Date && this.endAt.getTime() === this.endAt.getTime()) {
             form.endAt = this.endAt.toISOString();
         }
+        form.note = this.note;
 
         return form;
     }
